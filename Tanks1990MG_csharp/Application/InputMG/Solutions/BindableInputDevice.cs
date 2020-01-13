@@ -132,22 +132,17 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         /// </summary>
         public void Update()
         {
-            //foreach (var item in Keys)
-            //{
-            //    item.Update
-            //}
             Keys.ForEach(i => i.Update());
         }
 
         public void AddRange(List<IBindebleKey> keys)
         {
-            keys.ForEach(i=>AddKey(i));
+            Keys.AddRange(keys);
         }
 
         public void RemoveRange(List<IBindebleKey> keys)
         {
-            keys.ForEach(i => Keys.Remove(i));
-            Keys = Keys.ToList();
+            Keys = Keys.Except(keys).ToList();
         }
     }
 }
