@@ -64,14 +64,15 @@ namespace Tanks1990MG_csharp.Application
             //load layout
             KeyInterpretator.Instance.LoadLayout(keyboard as BindableInputDevice);
 
-           
-           // UI = new GeonBit.UI.UserInterface();
-           // UI.AddEntity(new GeonBit.UI.Entities.Button());
 
-            // Provide that text input
+            // UI = new GeonBit.UI.UserInterface();
+            // UI.AddEntity(new GeonBit.UI.Entities.Button());
+            Myra.Graphics2D.UI.Desktop.Widgets.Add(new Myra.Graphics2D.UI.Panel() {Id = "DeveloperMenu",Visible = false});
+            (Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu") as Myra.Graphics2D.UI.Panel).Widgets.Add(new Myra.Graphics2D.UI.Window() { Title = "Myra.Graphics2D.UI.Panel.DeveloperMenu" });
+
+            keyboard.AddKey(new BindibleKey("DeveloperMenu_Tilda_LAlt", () => Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.LeftAlt) && Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.OemTilde), () => { Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible = !Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible; }));
 
             ChangeState(StateBuilder.StateID.TEST);
-
             base.Initialize();
         }
 
@@ -145,10 +146,14 @@ namespace Tanks1990MG_csharp.Application
             {
                 if (currentState.DontUnloadFromMemory) currentState?.Save();
                 keyboard?.RemoveRange(currentState.StateKeyboardLayout);
+                if (currentState.GUI != null)
+                    Myra.Graphics2D.UI.Desktop.Widgets.Remove(currentState.GUI??null);
             }
             //new state
             currentState = StateBuilder.GetState(newStateID);
             keyboard?.AddRange(currentState.StateKeyboardLayout);
+            if (currentState.GUI != null)
+                Myra.Graphics2D.UI.Desktop.Widgets.Add(currentState.GUI);
             //Myra.Graphics2D.UI.Desktop.Widgets.Add();
 
 

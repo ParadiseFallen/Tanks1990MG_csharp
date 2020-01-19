@@ -6,7 +6,11 @@ namespace Tanks1990MG_csharp.Application.States.Interfaces
 {
     static public class StateBuilder
     {
-        public enum StateID { TEST,MainMenu };
+        public enum StateID {
+#if DEBUG
+            TEST
+#endif
+                ,MainMenu };
 
         static private Dictionary<StateID, IAppState> HotStates = new Dictionary<StateID, IAppState>();
 
@@ -26,9 +30,11 @@ namespace Tanks1990MG_csharp.Application.States.Interfaces
                 case StateID.MainMenu:
                     stateToReturn = new MainMenuAppState();
                     break;
+#if DEBUG
                 case StateID.TEST:
                     stateToReturn = new TestState();
                     break;
+#endif
                 default:
                     throw new Exception("Wrong ID!");
             }

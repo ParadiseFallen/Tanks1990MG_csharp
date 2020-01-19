@@ -69,7 +69,7 @@
     <Compile Include="Application\Providers\Interfaces\IProviderT.cs" />
     <Compile Include="Application\Providers\Solutions\SampleKeyFileProvider.cs" />
     <Compile Include="Application\States\Interfaces\IAppState.cs" />
-    <Compile Include="Application\States\States\AppState.cs" />
+    <Compile Include="Trasholder\AppState.cs" />
     <Compile Include="Application\States\States\MainMenuAppState.cs" />
     <Compile Include="Application\States\States\TestState.cs" />
     <Compile Include="Application\States\StateBuilder.cs" />

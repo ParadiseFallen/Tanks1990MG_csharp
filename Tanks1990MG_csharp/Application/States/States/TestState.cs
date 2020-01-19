@@ -19,6 +19,7 @@ namespace Tanks1990MG_csharp.Application.States.Solution
         public bool Initialized { get; set; }
         public bool DontUnloadFromMemory { get; set; } = true;
         public List<IBindebleKey> StateKeyboardLayout { get; set; } = new List<IBindebleKey>();
+        public Panel GUI { get; set; }
 
         public event Action<StateBuilder.StateID> ChangeStateRequest;
 

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
+using Myra.Graphics2D.UI;
 using Tanks1990MG_csharp.Application.InputMG.Interfaces;
 using Tanks1990MG_csharp.Application.States.Interfaces;
 
@@ -14,7 +15,9 @@ namespace Tanks1990MG_csharp.Application.States.Solution
     {
         public bool Initialized { get; set; } = false;
         public bool DontUnloadFromMemory { get; set; } = false;
-        public List<IBindebleKey> StateKeyboardLayout { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public List<IBindebleKey> StateKeyboardLayout { get ; set ; }
+        public Panel GUI { get; set; }
+
 
         public event Action<StateBuilder.StateID> ChangeStateRequest;
 

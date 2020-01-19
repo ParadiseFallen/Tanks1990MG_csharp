@@ -40,5 +40,6 @@ namespace Tanks1990MG_csharp.Application.States
         /// </summary>
         bool DontUnloadFromMemory { get; set; }
         List<IBindebleKey> StateKeyboardLayout { get;set; }
+        Myra.Graphics2D.UI.Panel GUI { get; set; }
     }
 }
