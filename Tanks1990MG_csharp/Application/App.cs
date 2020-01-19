@@ -21,22 +21,19 @@ namespace Tanks1990MG_csharp.Application
         
         InputMG.Interfaces.IBindebleInputDevice keyboard;
 
-        GeonBit.UI.UserInterface UI;
-
         private IAppState currentState;
         #endregion
 
         #region Events
         public Action<GameTime> OnLogicUpdate;
         #endregion
-
         public App()
         {
             graphics = new GraphicsDeviceManager(this);
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-
+            Myra.MyraEnvironment.Game = this;
 
             //register exit
             KeyInterpretator.Instance.RegisterAction("Game.Exit();", Exit);
@@ -111,7 +108,6 @@ namespace Tanks1990MG_csharp.Application
 
             //UI.Update(gameTime);
 
-
             keyboard.Update();
             // TODO: Add your update logic here
             OnLogicUpdate?.Invoke(gameTime);
@@ -128,6 +124,7 @@ namespace Tanks1990MG_csharp.Application
             spriteBatch.Begin();
 
             currentState?.Draw(GraphicsDevice);
+            Myra.Graphics2D.UI.Desktop.Render();
             //Desktop.Render();
             // TODO: Add your drawing code here
             //UI.Draw(spriteBatch);
@@ -152,16 +149,16 @@ namespace Tanks1990MG_csharp.Application
             //new state
             currentState = StateBuilder.GetState(newStateID);
             keyboard?.AddRange(currentState.StateKeyboardLayout);
+            //Myra.Graphics2D.UI.Desktop.Widgets.Add();
+
+
             if (currentState.Initialized)
-            {
                 return;
-            }
-            currentState.Initialized = true;
-            //Load gui
-            //windowContainer.Resized += (object sender, SizeEventArgs arg) => { currentState.GUI.View = Camera; };
-            //windowContainer.Subscribe((RenderWindow window) => { currentState.GUI.Target = window; });
-            //currentState.GUI.Target = windowContainer.Window;
+
+
+            
             currentState.ChangeStateRequest += ChangeState;
+            currentState.Initialized = true;
         }
     }
 }

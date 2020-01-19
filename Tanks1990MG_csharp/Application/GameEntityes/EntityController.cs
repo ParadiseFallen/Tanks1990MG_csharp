@@ -15,25 +15,15 @@ namespace Tanks1990MG_csharp.Application.GameEntityes
     /// <summary>
     /// Можно делать масив чанков а каждый чанк хранит контроллер
     /// </summary>
-    class EntityController : IUpdateable
+    class EntityController : IUpdatebleTime
     {
         public ObservableCollection<IGameEntity> Entities { get; private set; } = new ObservableCollection<IGameEntity>();
         public List<IGameEntity> EntitiesAsList { get {return Entities.ToList(); } }
-
-        public bool Enabled { get; set; }
-
-        public int UpdateOrder { get; set; }
-
         public EntityController()
         {
         }
-
-        public event EventHandler<EventArgs> EnabledChanged;
-        public event EventHandler<EventArgs> UpdateOrderChanged;
-
         public void Update(GameTime time)
         {
-
             EntitiesAsList.ForEach(i => i.Update(time));
         }
     }

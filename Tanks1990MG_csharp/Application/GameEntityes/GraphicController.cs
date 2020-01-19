@@ -29,7 +29,7 @@ namespace Tanks1990MG_csharp.Application.GameEntityes
 
         public void Draw(GraphicsDevice graphicsDevice)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
         }
     }
 }

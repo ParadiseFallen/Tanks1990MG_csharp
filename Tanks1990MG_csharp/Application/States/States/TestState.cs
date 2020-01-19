@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Myra.Graphics2D.UI;
 using Tanks1990MG_csharp.Application.GameEntityes;
 using Tanks1990MG_csharp.Application.InputMG.Interfaces;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
@@ -42,6 +43,7 @@ namespace Tanks1990MG_csharp.Application.States.Solution
 
         public void Save()
         {
+
         }
 
         public void Update(GameTime time)
