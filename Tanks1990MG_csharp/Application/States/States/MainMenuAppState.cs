@@ -24,7 +24,7 @@ namespace Tanks1990MG_csharp.Application.States.Solution
         {
             DontUnloadFromMemory = true;
 
-            Myra.Graphics2D.UI.Desktop.Render();
+            //Myra.Graphics2D.UI.Desktop.Render();
 
             //var vl = new VerticalLayout();
 
@@ -62,7 +62,7 @@ namespace Tanks1990MG_csharp.Application.States.Solution
 
         }
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(GraphicsDevice device)
         {
 
         }

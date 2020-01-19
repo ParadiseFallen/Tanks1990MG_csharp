@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Tanks1990MG_csharp.Application.GameEntityes.Interfaces;
 using Tanks1990MG_csharp.Application.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.Logic.Graphic
@@ -15,6 +16,7 @@ namespace Tanks1990MG_csharp.Application.Logic.Graphic
         /// Источник для рисованиея Source : Drawable
         /// </summary>
         public Interfaces.IDrawable Source { get; set; }
+        public IGameEntity Parent { get; set ; }
 
         public event Action<object, IRendererModel> IRendererModelChanged;
 
@@ -23,10 +25,9 @@ namespace Tanks1990MG_csharp.Application.Logic.Graphic
         /// </summary>
         /// <param name="target">Окно</param>
         /// <param name="states">Состояния</param>
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(GraphicsDevice device)
         {
-            Source.Draw(spriteBatch);
-            //Source.Draw(target, states);
+            Source?.Draw(device);
         }
 
         /// <summary>

@@ -16,19 +16,6 @@ namespace Tanks1990MG_csharp
         [STAThread]
         static void Main()
         {
-            List<int> X = new List<int>() { 3, 5 };
-
-            List<int> A = new List<int>() { 1 };
-
-            A.AddRange(X);
-
-            A.ForEach(Console.WriteLine);
-            Console.WriteLine();
-            X.ForEach(i=>A.Remove(i));
-            A.ForEach(Console.WriteLine);
-
-            Console.ReadKey();
-
             using (var game = new App())
                 game.Run();
         }

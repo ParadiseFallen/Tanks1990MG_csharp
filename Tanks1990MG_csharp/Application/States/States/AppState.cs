@@ -18,7 +18,7 @@ namespace Tanks1990MG_csharp.Application.States.Solution
 
         public event Action<StateBuilder.StateID> ChangeStateRequest;
 
-        public void Draw(SpriteBatch spriteBatch)
+        public void Draw(GraphicsDevice spriteBatch)
         {
 
         }

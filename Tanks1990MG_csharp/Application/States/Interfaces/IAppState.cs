@@ -39,7 +39,6 @@ namespace Tanks1990MG_csharp.Application.States
         /// Не выгружать из памяти
         /// </summary>
         bool DontUnloadFromMemory { get; set; }
-
         List<IBindebleKey> StateKeyboardLayout { get;set; }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
 using System.Linq;
@@ -14,24 +15,26 @@ namespace Tanks1990MG_csharp.Application.GameEntityes
     /// <summary>
     /// Можно делать масив чанков а каждый чанк хранит контроллер
     /// </summary>
-    class EntityController : Application.Interfaces.IDrawable, IUpdatebleTime
+    class EntityController : IUpdateable
     {
         public ObservableCollection<IGameEntity> Entities { get; private set; } = new ObservableCollection<IGameEntity>();
-        
+        public List<IGameEntity> EntitiesAsList { get {return Entities.ToList(); } }
+
+        public bool Enabled { get; set; }
+
+        public int UpdateOrder { get; set; }
+
         public EntityController()
         {
-            Entities.CollectionChanged += (object sender, NotifyCollectionChangedEventArgs e) => { };
-
         }
 
-        public void Draw(SpriteBatch spriteBatch)
-        {
-            Entities.ToList().ForEach(i=>i.Draw(spriteBatch));
-        }
+        public event EventHandler<EventArgs> EnabledChanged;
+        public event EventHandler<EventArgs> UpdateOrderChanged;
 
         public void Update(GameTime time)
         {
-            Entities.ToList().ForEach(i => i.Update(time));
+
+            EntitiesAsList.ForEach(i => i.Update(time));
         }
     }
 }

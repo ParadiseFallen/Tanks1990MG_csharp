@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
+using Tanks1990MG_csharp.Application.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.GameEntityes.Interfaces
 {
@@ -7,8 +9,8 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Interfaces
     //    void Execute(IGameEntity entity,EventArgs args);
     //}
     
-    public interface IControllerModel
+    public interface IControllerModel : IUpdateable
     {
-        IGameEntity MyEntity { get; set; }
+        IGameEntity Entity { get; set; }
     }
 }

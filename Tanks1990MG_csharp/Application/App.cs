@@ -3,7 +3,6 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
-using Myra.Graphics2D.UI;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States;
 using Tanks1990MG_csharp.Application.States.Interfaces;
@@ -18,10 +17,11 @@ namespace Tanks1990MG_csharp.Application
         #region Data
 
         GraphicsDeviceManager graphics;
-
         SpriteBatch spriteBatch;
-
+        
         InputMG.Interfaces.IBindebleInputDevice keyboard;
+
+        GeonBit.UI.UserInterface UI;
 
         private IAppState currentState;
         #endregion
@@ -36,8 +36,7 @@ namespace Tanks1990MG_csharp.Application
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            Myra.MyraEnvironment.Game = this;
-            
+
 
             //register exit
             KeyInterpretator.Instance.RegisterAction("Game.Exit();", Exit);
@@ -57,6 +56,8 @@ namespace Tanks1990MG_csharp.Application
             Window.Title = "Tanks1990";
             IsMouseVisible = true;
 
+            //GeonBit.UI.UserInterface.Initialize(Content);
+
             //init keyboard
             keyboard = new BindableInputDevice();
             //update on logic update
@@ -66,12 +67,11 @@ namespace Tanks1990MG_csharp.Application
             //load layout
             KeyInterpretator.Instance.LoadLayout(keyboard as BindableInputDevice);
 
-
-            Myra.MyraEnvironment.Game = this;
-            Desktop.HasExternalTextInput = true;
+           
+           // UI = new GeonBit.UI.UserInterface();
+           // UI.AddEntity(new GeonBit.UI.Entities.Button());
 
             // Provide that text input
-            Window.TextInput += (s, a) =>{Desktop.OnChar(a.Character);};
 
             ChangeState(StateBuilder.StateID.TEST);
 
@@ -87,7 +87,6 @@ namespace Tanks1990MG_csharp.Application
         {
             // Create a new SpriteBatch, which can be used to draw textures.
             spriteBatch = new SpriteBatch(GraphicsDevice);
-
 
             // TODO: use this.Content to load your game content here
         }
@@ -110,6 +109,9 @@ namespace Tanks1990MG_csharp.Application
         {
             currentState.Update(gameTime);
 
+            //UI.Update(gameTime);
+
+
             keyboard.Update();
             // TODO: Add your update logic here
             OnLogicUpdate?.Invoke(gameTime);
@@ -125,9 +127,10 @@ namespace Tanks1990MG_csharp.Application
             GraphicsDevice.Clear(Color.Bisque);
             spriteBatch.Begin();
 
-            currentState?.Draw(spriteBatch);
-            Desktop.Render();
+            currentState?.Draw(GraphicsDevice);
+            //Desktop.Render();
             // TODO: Add your drawing code here
+            //UI.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);

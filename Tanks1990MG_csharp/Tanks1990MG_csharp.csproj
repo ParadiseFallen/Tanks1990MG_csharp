@@ -48,6 +48,8 @@
   <ItemGroup>
     <Compile Include="Application\App.cs" />
     <Compile Include="Application\GameEntityes\EntityController.cs" />
+    <Compile Include="Application\GameEntityes\GraphicController.cs" />
+    <Compile Include="Application\GameEntityes\Interfaces\IComponent.cs" />
     <Compile Include="Application\GameEntityes\Interfaces\IControllerModel.cs" />
     <Compile Include="Application\GameEntityes\Interfaces\IGameEntity.cs" />
     <Compile Include="Application\GameEntityes\Solutions\Fabric\Builders\IEntityBuilder.cs" />
@@ -67,19 +69,22 @@
     <Compile Include="Application\Providers\Interfaces\IProviderT.cs" />
     <Compile Include="Application\Providers\Solutions\SampleKeyFileProvider.cs" />
     <Compile Include="Application\States\Interfaces\IAppState.cs" />
-    <Compile Include="Application\States\Solution\AppState.cs" />
-    <Compile Include="Application\States\Solution\MainMenuAppState.cs" />
-    <Compile Include="Application\States\Solution\TestState.cs" />
+    <Compile Include="Application\States\States\AppState.cs" />
+    <Compile Include="Application\States\States\MainMenuAppState.cs" />
+    <Compile Include="Application\States\States\TestState.cs" />
     <Compile Include="Application\States\StateBuilder.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="DataTypes, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.4.0.1\lib\geonbitui\DataTypes.dll</HintPath>
+    </Reference>
+    <Reference Include="GeonBit.UI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\GeonBit.UI.3.4.0.1\lib\geonbitui\GeonBit.UI.dll</HintPath>
+    </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
-    </Reference>
-    <Reference Include="Myra, Version=0.9.8.191, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Myra.0.9.8.191\lib\net45\Myra.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
