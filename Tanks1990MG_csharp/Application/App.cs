@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
+using Tanks1990MG_csharp.Application.InputMG;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States;
 using Tanks1990MG_csharp.Application.States.Interfaces;
@@ -18,7 +20,7 @@ namespace Tanks1990MG_csharp.Application
 
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
-        
+
         InputMG.Interfaces.IBindebleInputDevice keyboard;
 
         private IAppState currentState;
@@ -54,25 +56,28 @@ namespace Tanks1990MG_csharp.Application
             IsMouseVisible = true;
 
             //GeonBit.UI.UserInterface.Initialize(Content);
-
             //init keyboard
             keyboard = new BindableInputDevice();
+
+            Components.Add(keyboard);
+
             //update on logic update
-            OnLogicUpdate += (GameTime t) => {  };
+            OnLogicUpdate += (GameTime t) => { };
             //link key interpretator
             keyboard.KeyAdded += KeyInterpretator.Instance.RegisterSample;
             //load layout
             KeyInterpretator.Instance.LoadLayout(keyboard as BindableInputDevice);
 
-
+            
             // UI = new GeonBit.UI.UserInterface();
             // UI.AddEntity(new GeonBit.UI.Entities.Button());
-            Myra.Graphics2D.UI.Desktop.Widgets.Add(new Myra.Graphics2D.UI.Panel() {Id = "DeveloperMenu",Visible = false});
-            (Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu") as Myra.Graphics2D.UI.Panel).Widgets.Add(new Myra.Graphics2D.UI.Window() { Title = "Myra.Graphics2D.UI.Panel.DeveloperMenu" });
+            var Panel = new Myra.Graphics2D.UI.Panel() { Id = "DeveloperMenu", Layout2d = new Myra.Graphics2D.UI.Properties.Layout2D("this.h = W.h;this.w = W.w") };
+            Panel.Widgets.Add(new Myra.Graphics2D.UI.Window() { Title = "Myra.Graphics2D.UI.Panel.DeveloperMenu" });
+            keyboard.AddKey(new BindibleKey("DeveloperMenu_Tilda_LAlt", () => Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.LeftAlt) && Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.OemTilde), () => { Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible = !Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible; }) { RepeatDelayMS = 100 });
+            Myra.Graphics2D.UI.Desktop.Widgets.Add(Panel);
 
-            keyboard.AddKey(new BindibleKey("DeveloperMenu_Tilda_LAlt", () => Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.LeftAlt) && Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.OemTilde), () => { Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible = !Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible; }));
+            Task.Run(() => ChangeState(StateBuilder.StateID.TEST)).Wait();
 
-            ChangeState(StateBuilder.StateID.TEST);
             base.Initialize();
         }
 
@@ -108,8 +113,10 @@ namespace Tanks1990MG_csharp.Application
             currentState.Update(gameTime);
 
             //UI.Update(gameTime);
-
-            keyboard.Update();
+            Myra.Graphics2D.UI.Desktop.UpdateInput();
+            Myra.Graphics2D.UI.Desktop.UpdateMouseInput();
+            //Console.WriteLine(gameTime.TotalGameTime.Ticks);
+            //keyboard.Update(gameTime);
             // TODO: Add your update logic here
             OnLogicUpdate?.Invoke(gameTime);
             base.Update(gameTime);
@@ -126,9 +133,7 @@ namespace Tanks1990MG_csharp.Application
 
             currentState?.Draw(GraphicsDevice);
             Myra.Graphics2D.UI.Desktop.Render();
-            //Desktop.Render();
             // TODO: Add your drawing code here
-            //UI.Draw(spriteBatch);
 
             spriteBatch.End();
             base.Draw(gameTime);
@@ -139,31 +144,49 @@ namespace Tanks1990MG_csharp.Application
         /// Изменить активное состояние
         /// </summary>
         /// <param name="newStateID">ID нового состояния</param>
-        private void ChangeState(StateBuilder.StateID newStateID)
+        private async void ChangeState(StateBuilder.StateID newStateID)
         {
             //old state
             if (currentState != null)
-            {
-                if (currentState.DontUnloadFromMemory) currentState?.Save();
-                keyboard?.RemoveRange(currentState.StateKeyboardLayout);
-                if (currentState.GUI != null)
-                    Myra.Graphics2D.UI.Desktop.Widgets.Remove(currentState.GUI??null);
-            }
+                LinkState(currentState, false);
+            /*
+             LOADING SCREEN
+             Нужно легкое состояние, которое будет быстро загружаться, Фон картинка, какой либо текст подсказка(игровая), иконка загрузки
+             
+             */
+
             //new state
-            currentState = StateBuilder.GetState(newStateID);
-            keyboard?.AddRange(currentState.StateKeyboardLayout);
-            if (currentState.GUI != null)
-                Myra.Graphics2D.UI.Desktop.Widgets.Add(currentState.GUI);
+            currentState = await StateBuilder.GetStateAsync(newStateID);
+            LinkState(currentState, true);
             //Myra.Graphics2D.UI.Desktop.Widgets.Add();
 
 
             if (currentState.Initialized)
                 return;
-
-
-            
             currentState.ChangeStateRequest += ChangeState;
             currentState.Initialized = true;
+        }
+
+        private void LinkState(IAppState appState, bool Link)
+        {
+            if (Link)
+            {
+                appState?.Load();
+
+                if (appState.StateKeyboardLayout != null)
+                    keyboard?.AddRange(appState.StateKeyboardLayout);
+                if (appState.GUI != null)
+                    Myra.Graphics2D.UI.Desktop.Widgets.Add(appState.GUI);
+            }
+            else
+            {
+                appState?.Save();
+
+                if (appState.StateKeyboardLayout!= null)
+                    keyboard?.RemoveRange(appState.StateKeyboardLayout);
+                if (appState.GUI != null)
+                    Myra.Graphics2D.UI.Desktop.Widgets.Remove(appState.GUI ?? null);
+            }
         }
     }
 }

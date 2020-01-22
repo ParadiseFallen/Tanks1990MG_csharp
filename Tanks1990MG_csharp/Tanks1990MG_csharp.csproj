@@ -58,6 +58,7 @@
     <Compile Include="Application\GameEntityes\Solutions\GameEntity.cs" />
     <Compile Include="Application\InputMG\Interfaces\IBindebleInputDevice.cs" />
     <Compile Include="Application\InputMG\Interfaces\IBindebleKey.cs" />
+    <Compile Include="Application\InputMG\MonoWrapKeyboard.cs" />
     <Compile Include="Application\InputMG\Solutions\BindableInputDevice.cs" />
     <Compile Include="Application\InputMG\Solutions\BindibleKey.cs" />
     <Compile Include="Application\InputMG\Solutions\KeyInterpretator.cs" />
@@ -69,6 +70,7 @@
     <Compile Include="Application\Providers\Interfaces\IProviderT.cs" />
     <Compile Include="Application\Providers\Solutions\SampleKeyFileProvider.cs" />
     <Compile Include="Application\States\Interfaces\IAppState.cs" />
+    <Compile Include="Application\States\States\LoadingScreen.cs" />
     <Compile Include="Trasholder\AppState.cs" />
     <Compile Include="Application\States\States\MainMenuAppState.cs" />
     <Compile Include="Application\States\States\TestState.cs" />
@@ -83,8 +85,8 @@
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Myra, Version=0.9.8.193, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Myra.0.9.8.193\lib\net45\Myra.dll</HintPath>
+    <Reference Include="Myra, Version=0.9.8.194, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Myra.0.9.8.194\lib\net45\Myra.dll</HintPath>
     </Reference>
     <Reference Include="StbImageSharp, Version=2.22.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\StbImageSharp.2.22.2\lib\net45\StbImageSharp.dll</HintPath>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using Tanks1990MG_csharp.Application.States.Solution;
 
 namespace Tanks1990MG_csharp.Application.States.Interfaces
@@ -10,9 +11,16 @@ namespace Tanks1990MG_csharp.Application.States.Interfaces
 #if DEBUG
             TEST
 #endif
+                ,LoadingScreen
                 ,MainMenu };
 
         static private Dictionary<StateID, IAppState> HotStates = new Dictionary<StateID, IAppState>();
+
+        static public async Task<IAppState> GetStateAsync(StateID ID)
+        {
+            return await Task<IAppState>.Run(() => GetState(ID));
+        }
+
 
         /// <summary>
         /// Jist return state by ID
@@ -29,6 +37,9 @@ namespace Tanks1990MG_csharp.Application.States.Interfaces
             {
                 case StateID.MainMenu:
                     stateToReturn = new MainMenuAppState();
+                    break;
+                case StateID.LoadingScreen:
+
                     break;
 #if DEBUG
                 case StateID.TEST:

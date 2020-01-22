@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,7 +11,7 @@ namespace Tanks1990MG_csharp.Application.InputMG.Interfaces
     /// <summary>
     /// Interface for custom bindible input device
     /// </summary>
-    interface IBindebleInputDevice
+    interface IBindebleInputDevice  : IGameComponent, IUpdateable
     {
         /// <summary>
         /// Action called when key added
@@ -19,7 +20,7 @@ namespace Tanks1990MG_csharp.Application.InputMG.Interfaces
         /// <summary>
         /// Update method
         /// </summary>
-        void Update();
+        //void Update(GameTime time);
         /// <summary>
         /// Добавить новую IBindebleKey<T> 
         /// </summary>

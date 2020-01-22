@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Xna.Framework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,25 +11,37 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
     /// <summary>
     ///Bindeble keyboard 
     /// </summary>
-    class BindableInputDevice : IBindebleInputDevice
+    class BindableInputDevice :  IBindebleInputDevice
     {
         #region Data
         /// <summary>
         /// List of bindible keys
         /// </summary>
+        /// 
+
         private List<IBindebleKey> Keys { get; set; }
+        private bool _Enabled = true;
+        private int _UpdateOrder = 1;
+
         /// <summary>
         /// UNSAFE! get list of Keys
         /// </summary>
         /// <returns>List<BindibleKey></returns>
-        public List<IBindebleKey> UnsafeGetKeys() { return Keys; }
         #endregion
+        #region Data acessor
+        public bool Enabled { get { return _Enabled; } set { _Enabled = value; } }
+        public int UpdateOrder { get { return _UpdateOrder; } set { _UpdateOrder = value; } }
+        #endregion
+
+
         #region Events
         /// <summary>
         /// Action called when key added, you can Connect KeyInterpretator.RegisterSample(), 
         /// Action will called only when you send metadata
         /// </summary>
         public event Action<KeyMetadata> KeyAdded;
+        public event EventHandler<EventArgs> EnabledChanged;
+        public event EventHandler<EventArgs> UpdateOrderChanged;
         #endregion
         #region Work with keys
         /// <summary>
@@ -116,6 +129,7 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
                     }
                     );
         }
+        public List<IBindebleKey> UnsafeGetKeys() { return Keys; }
         #endregion
         /// <summary>
         /// Default ctor
@@ -130,9 +144,9 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         /// <summary>
         /// Send all keys KeyEventArgs
         /// </summary>
-        public void Update()
+        public void Update(GameTime time)
         {
-            Keys.ForEach(i => i.Update());
+            Keys.ForEach(i => i.Update(time));
         }
 
         public void AddRange(List<IBindebleKey> keys)
@@ -143,6 +157,11 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         public void RemoveRange(List<IBindebleKey> keys)
         {
             Keys = Keys.Except(keys).ToList();
+        }
+
+        public void Initialize()
+        {
+
         }
     }
 }
