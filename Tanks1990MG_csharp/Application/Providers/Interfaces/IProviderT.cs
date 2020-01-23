@@ -17,10 +17,6 @@ namespace Tanks1990MG_csharp.Application.Providers.Interfaces
         /// </summary>
         Predicate<string> Filter { get; set; }
         /// <summary>
-        /// Working link (file,server,etc)
-        /// </summary>
-        string Link { get; set; }
-        /// <summary>
         /// Get data
         /// </summary>
         /// <returns>T data</returns>

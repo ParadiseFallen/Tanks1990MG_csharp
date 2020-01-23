@@ -11,7 +11,7 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
     /// <summary>
     ///Bindeble keyboard 
     /// </summary>
-    class BindableInputDevice :  IBindebleInputDevice
+    class BindableInputDevice : IBindebleInputDevice
     {
         #region Data
         /// <summary>
@@ -116,7 +116,8 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         public void LockKeys(Predicate<String> Filter)
         {
             Keys.ForEach(
-                i => {
+                i =>
+                {
                     if (Filter(i.Description)) i.Locked = true;
                 }
                 );
@@ -124,7 +125,8 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         public void UnlockKeys(Predicate<String> Filter)
         {
             Keys.ForEach(
-                    i => {
+                    i =>
+                    {
                         if (Filter(i.Description)) i.Locked = false;
                     }
                     );
@@ -146,7 +148,8 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         /// </summary>
         public void Update(GameTime time)
         {
-            Keys.ForEach(i => i.Update(time));
+            if (Enabled)
+                Keys.ForEach(i => i.Update(time));
         }
 
         public void AddRange(List<IBindebleKey> keys)

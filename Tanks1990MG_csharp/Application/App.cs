@@ -110,13 +110,10 @@ namespace Tanks1990MG_csharp.Application
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            currentState.Update(gameTime);
+            currentState?.Update(gameTime);
 
             //UI.Update(gameTime);
-            Myra.Graphics2D.UI.Desktop.UpdateInput();
-            Myra.Graphics2D.UI.Desktop.UpdateMouseInput();
-            //Console.WriteLine(gameTime.TotalGameTime.Ticks);
-            //keyboard.Update(gameTime);
+
             // TODO: Add your update logic here
             OnLogicUpdate?.Invoke(gameTime);
             base.Update(gameTime);

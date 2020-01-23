@@ -17,5 +17,7 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         public string Description { get; set; }
         public List<string> ActionF { get; set; }
         public string Triger { get; set; }
+        public bool RepeatDelayEnabled { get; set; }
+        public int RepeatDelayMS { get; set; }
     }
 }

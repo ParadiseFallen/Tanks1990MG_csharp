@@ -207,7 +207,9 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
             List<IBindebleKey> keys = new List<IBindebleKey>();
             foreach (var item in Samples)
             {
-                var t = new BindibleKey(item.Description, KeyActivationFunctionsDictionary[item.Triger], null);
+                var t = new 
+                    BindibleKey(item.Description, KeyActivationFunctionsDictionary[item.Triger], null) 
+                    {RepeatDelayEnabled = item.RepeatDelayEnabled, RepeatDelayMS = item.RepeatDelayMS };
                 //add all actions
                 item.ActionF.ForEach(i => { t.Trigered += KeyActionsDictionary[i]; });
                 keys.Add(t);
