@@ -57,7 +57,7 @@ namespace Tanks1990MG_csharp.Application.Interfaces
         event Action<IColision2D> Colisioned;
     }
     //py
-    public interface IRendererModel : IDrawable, IUpdatebleTime, IComponent<IGameEntity>
+    public interface IRendererModel : IDrawable, IUpdatebleTime/*, IComponent<IGameEntity>*/
     {
         IDrawable Source { get; set; }
         event Action<object, IRendererModel> IRendererModelChanged;

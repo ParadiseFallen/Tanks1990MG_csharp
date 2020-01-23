@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Tanks1990MG_csharp.Application;
+using Tanks1990MG_csharp.Application.GameEntityes.Test;
 
 namespace Tanks1990MG_csharp
 {
@@ -19,8 +20,6 @@ namespace Tanks1990MG_csharp
             using (var game = new App())
                 game.Run();
         }
-
-        
     }
 
    
