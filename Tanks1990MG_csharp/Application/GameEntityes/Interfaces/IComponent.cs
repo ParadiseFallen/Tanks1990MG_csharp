@@ -14,7 +14,7 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Test
         //каждый компонент имеет родителя
         T Parent{ get; set; }
         //был ли активирован
-        bool Activated { get; set; }
+        bool Activated { get;}
         void Activate(T parrent);
         void Deactivate(T parrent);
     }
@@ -88,7 +88,9 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Test
             }
             Components.Add(component);
             component.Parent = this;
-            component.Activated = true;
+
+
+
             return true;
         }
         public bool RemoveComponent(IEntityComponent<IComponentsContainer> component)
@@ -109,6 +111,14 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Test
         public void Update(GameTime gameTime)
         {
             Components.ToList().ForEach(i=>i.Update(gameTime));
+        }
+        public void ActivateAll(Func<IEntityComponent<IComponentsContainer>, bool> Filter) {
+            Components.ToList().ForEach(
+                i => {
+                    if (Filter(i))
+                        i.Activate(this);
+                        }
+                );
         }
     }
 
