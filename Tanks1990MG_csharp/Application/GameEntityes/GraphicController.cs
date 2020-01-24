@@ -10,6 +10,7 @@ using Tanks1990MG_csharp.Application.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.GameEntityes
 {
+    //instancing!
     class GraphicController : IDrawable
     {
         public ObservableCollection<IDrawable> Drawables { get; set; } = new ObservableCollection<IDrawable>();
