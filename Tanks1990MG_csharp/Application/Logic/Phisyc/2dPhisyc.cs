@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using EMCS.Interfaces.Entity;
+using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

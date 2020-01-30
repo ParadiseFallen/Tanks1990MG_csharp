@@ -1,4 +1,5 @@
-﻿using Microsoft.Xna.Framework;
+﻿using Microsoft.CSharp;
+using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
@@ -69,7 +70,9 @@ namespace Tanks1990MG_csharp.Application
             //load layout
             KeyInterpretator.Instance.LoadLayout(keyboard as BindableInputDevice);
 
-            
+
+            CSharpCodeProvider cSharpCodeProvider = new CSharpCodeProvider();
+
             // UI = new GeonBit.UI.UserInterface();
             // UI.AddEntity(new GeonBit.UI.Entities.Button());
             var Panel = new Myra.Graphics2D.UI.Panel() { Id = "DeveloperMenu", Layout2d = new Myra.Graphics2D.UI.Properties.Layout2D("this.h = W.h;this.w = W.w") };

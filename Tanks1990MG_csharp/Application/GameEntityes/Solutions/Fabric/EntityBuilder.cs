@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EMCS.Interfaces.Entity;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,7 +23,7 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions
         public IGameEntity Build()
         {
             var t = builder.Build();
-            t.GUID = counter++;
+            //t.GUID. = counter++;
             return t;
         }
         public void ChangeBuilder(IEntityBuilder newBuilder)
