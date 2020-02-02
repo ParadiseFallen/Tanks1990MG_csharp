@@ -7,7 +7,7 @@ using Tanks1990MG_csharp.Application.States.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.States
 {
-    public interface IAppState : IUpdatebleTime, IDrawable
+    public interface IAppState : IUpdatebleTime
     {
         /// <summary>
         /// Нужго ли еще доставлять данные после получения из фабрики
@@ -40,6 +40,6 @@ namespace Tanks1990MG_csharp.Application.States
         /// </summary>
         bool DontUnloadFromMemory { get; set; }
         List<IBindebleKey> StateKeyboardLayout { get;set; }
-        Myra.Graphics2D.UI.Panel GUI { get; set; }
+        //Myra.Graphics2D.UI.Panel GUI { get; set; }
     }
 }

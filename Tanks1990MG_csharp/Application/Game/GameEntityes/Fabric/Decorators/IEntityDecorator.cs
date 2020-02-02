@@ -8,9 +8,9 @@ using Tanks1990MG_csharp.Application.GameEntityes.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.Builders
 {
-    interface IEntityBuilder
+    public interface IEntityDecorator
     {
-        IGameEntity Build();
-        IGameEntity Build(EventArgs arg);
+        EntityBuilder Builder { get; set; }
+        void Decorate(IGameEntity entity);
     }
 }

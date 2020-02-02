@@ -1,0 +1,23 @@
+﻿using EMCS.Interfaces.Entity;
+using EMCS.Realisations.Entity;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Tanks1990MG_csharp.Application.Providers.Interfaces;
+
+namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.EntityProvider
+{
+    class CustomEntityProvider : IProvider<IGameEntity>
+    {
+        public Predicate<string> Filter { get; set; }
+        public IGameEntity Get()
+        {
+            return new CustomEntity();
+        }
+        public void Place(IGameEntity data)
+        {
+        }
+    }
+}

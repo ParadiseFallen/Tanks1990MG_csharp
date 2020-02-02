@@ -1,13 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
-using Myra.Graphics2D.UI;
 using Tanks1990MG_csharp.Application.InputMG.Interfaces;
-using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.States.Solution
@@ -19,23 +14,23 @@ namespace Tanks1990MG_csharp.Application.States.Solution
         public bool DontUnloadFromMemory { get; set; }
         public bool Initialized { get; set; } = false;
         public List<IBindebleKey> StateKeyboardLayout { get; set; } = new List<IBindebleKey>();
-        public Panel GUI { get; set; }
 
         public event Action<StateBuilder.StateID> ChangeStateRequest;
         public MainMenuAppState()
         {
             DontUnloadFromMemory = true;
-
+            //TextButton textButton = new TextButton() { Posit}
+            //GUI.Widgets.Add(new Myra.Graphics2D.UI.TextButton() {  Position = new Vector2f(100, 200), Text = "PLAY", TextSize = 40 });
             //Myra.Graphics2D.UI.Desktop.Render();
 
-            //var vl = new VerticalLayout();
+            //var vl = new Myra.Graphics2D.UI. VerticalLayout();
 
-            //vl.SetPosition(new Layout2d("&.width-width + width/20", "&.height+40% - height"));
-            //vl.SetSize(new Layout2d("&.width-width", " &.h"));
+            //vl.SetPosition(new Layout2D("&.width-width + width/20", "&.height+40% - height"));
+            //vl.SetSize(new Layout2D("&.width-width", " &.h"));
 
             //GUI.Add(vl);
 
-            //GUI.Add(new Button() { Position = new Vector2f(100, 200), Text = "PLAY", TextSize = 40 }) ;
+            //GUI.Add() ;
             //GUI.Add(new Button() { Position = new Vector2f(100, 240), Text = "Settings", TextSize = 40 });
             //GUI.Add(new Button() { Position = new Vector2f(100, 280), Text = "Reserved", TextSize = 40 });
             //GUI.Add(new Button() { Position = new Vector2f(100, 320), Text = "Reserved", TextSize = 40 });

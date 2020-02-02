@@ -5,8 +5,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Tanks1990MG_csharp.Application.GameEntityes.Test;
-using Tanks1990MG_csharp.Application.InputMG;
+using Tanks1990MG_csharp.Application.GameEntityes.Solutions;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States;
 using Tanks1990MG_csharp.Application.States.Interfaces;
@@ -16,10 +15,10 @@ namespace Tanks1990MG_csharp.Application
     /// <summary>
     /// This is the main type for your game.
     /// </summary>
-    public class App : Game
+    public class App : Microsoft.Xna.Framework.Game
     {
         #region Data
-
+        
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
@@ -37,11 +36,13 @@ namespace Tanks1990MG_csharp.Application
             Content.RootDirectory = "Content";
             graphics.PreferredBackBufferWidth = 1280;
             graphics.PreferredBackBufferHeight = 720;
-            Myra.MyraEnvironment.Game = this;
+            //Myra.MyraEnvironment.Game = this;
 
             //register exit
             KeyInterpretator.Instance.RegisterAction("Game.Exit();", Exit);
             KeyInterpretator.Instance.Provider = new Providers.Solutions.SampleKeyFileProvider() { Link = "file.ly" };
+
+            EntityBuilder.BuilderInstance.Content = Content;
         }
 
         /// <summary>
@@ -62,7 +63,6 @@ namespace Tanks1990MG_csharp.Application
             keyboard = new BindableInputDevice();
 
             Components.Add(keyboard);
-
             //update on logic update
             OnLogicUpdate += (GameTime t) => { };
             //link key interpretator
@@ -70,15 +70,14 @@ namespace Tanks1990MG_csharp.Application
             //load layout
             KeyInterpretator.Instance.LoadLayout(keyboard as BindableInputDevice);
 
-
-            CSharpCodeProvider cSharpCodeProvider = new CSharpCodeProvider();
+            //MonoGame.UI.Forms.Form f = new MonoGame.UI.Forms.Form();
 
             // UI = new GeonBit.UI.UserInterface();
             // UI.AddEntity(new GeonBit.UI.Entities.Button());
-            var Panel = new Myra.Graphics2D.UI.Panel() { Id = "DeveloperMenu", Layout2d = new Myra.Graphics2D.UI.Properties.Layout2D("this.h = W.h;this.w = W.w") };
-            Panel.Widgets.Add(new Myra.Graphics2D.UI.Window() { Title = "Myra.Graphics2D.UI.Panel.DeveloperMenu" });
-            keyboard.AddKey(new BindibleKey("DeveloperMenu_Tilda_LAlt", () => Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.LeftAlt) && Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.OemTilde), () => { Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible = !Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible; }) { RepeatDelayMS = 100 });
-            Myra.Graphics2D.UI.Desktop.Widgets.Add(Panel);
+            // var Panel = new Myra.Graphics2D.UI.Panel() { Id = "DeveloperMenu", Layout2d = new Myra.Graphics2D.UI.Properties.Layout2D("this.h = W.h;this.w = W.w") };
+            //Panel.Widgets.Add(new Myra.Graphics2D.UI.Window() { Title = "Myra.Graphics2D.UI.Panel.DeveloperMenu" });
+            //keyboard.AddKey(new BindibleKey("DeveloperMenu_Tilda_LAlt", () => Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.LeftAlt) && Keyboard.GetState().GetPressedKeys().ToList().Contains(Keys.OemTilde), () => { Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible = !Myra.Graphics2D.UI.Desktop.GetWidgetByID("DeveloperMenu").Visible; }) { RepeatDelayMS = 100 });
+            //Myra.Graphics2D.UI.Desktop.Widgets.Add(Panel);
 
             Task.Run(() => ChangeState(StateBuilder.StateID.TEST)).Wait();
 
@@ -132,8 +131,7 @@ namespace Tanks1990MG_csharp.Application
             GraphicsDevice.Clear(Color.Bisque);
             spriteBatch.Begin();
 
-            currentState?.Draw(GraphicsDevice);
-            Myra.Graphics2D.UI.Desktop.Render();
+            //Myra.Graphics2D.UI.Desktop.Render();
             // TODO: Add your drawing code here
 
             spriteBatch.End();
@@ -176,17 +174,17 @@ namespace Tanks1990MG_csharp.Application
 
                 if (appState.StateKeyboardLayout != null)
                     keyboard?.AddRange(appState.StateKeyboardLayout);
-                if (appState.GUI != null)
-                    Myra.Graphics2D.UI.Desktop.Widgets.Add(appState.GUI);
+                //if (appState.GUI != null)
+                    //Myra.Graphics2D.UI.Desktop.Widgets.Add(appState.GUI);
             }
             else
             {
                 appState?.Save();
 
-                if (appState.StateKeyboardLayout!= null)
+                if (appState.StateKeyboardLayout != null)
                     keyboard?.RemoveRange(appState.StateKeyboardLayout);
-                if (appState.GUI != null)
-                    Myra.Graphics2D.UI.Desktop.Widgets.Remove(appState.GUI ?? null);
+                //if (appState.GUI != null)
+                    //Myra.Graphics2D.UI.Desktop.Widgets.Remove(appState.GUI ?? null);
             }
         }
     }

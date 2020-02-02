@@ -2,7 +2,7 @@
 using Microsoft.Xna.Framework.Graphics;
 using System;
 using Tanks1990MG_csharp.Application.GameEntityes.Interfaces;
-using Tanks1990MG_csharp.Application.Logic.Phisyc;
+using Tanks1990MG_csharp.Application.States;
 
 namespace Tanks1990MG_csharp.Application.Interfaces
 {
@@ -25,41 +25,50 @@ namespace Tanks1990MG_csharp.Application.Interfaces
 
     public interface IDrawable
     {
-        void Draw(GraphicsDevice graphicsDevice);
+        void Draw(GraphicView drawer);
     }
-    public interface IMoveble<T> : IUpdatebleTime
+    public class Sprite : IDrawable
     {
-        T Acceleration { get; set; }
-        T Position { get; set; }
-        T Rotation { get; set; }
-        //sender/arg
-        event Action<object, T> AccelerationChanged;
-        event Action<object, T> PositionChanged;
-        event Action<object, T> RotationChanged;
+        public Texture2D Texture{ get; set; }
+        public Vector3 Position { get; set; }
+        public void Draw(GraphicView drawer)
+        {
+            drawer.SpriteBatchRes.Draw(Texture,new Vector2(Position.X,Position.Y),layerDepth: Position.Z);
+        }
     }
+    ////public interface IMoveble<T> : IUpdatebleTime
+    ////{
+    ////    T Acceleration { get; set; }
+    ////    T Position { get; set; }
+    ////    T Rotation { get; set; }
+    ////    //sender/arg
+    ////    event Action<object, T> AccelerationChanged;
+    ////    event Action<object, T> PositionChanged;
+    ////    event Action<object, T> RotationChanged;
+    ////}
 
-    public interface IColision : IUpdateable {
-        IPhisycModel ParentPhisycModel { get; set; }
-        event Action<IColision> OnColisionEnter;
-        event Action<IColision> OnColisionExit;
-        event Action<IColision> OnColisionStay;
-    }
-    //py
-    public interface IColision2D : IColision
-    {
-        /// <summary>
-        /// Область обьекта(размеры)
-        /// </summary>
-        Rectangle ColisionArea { get; set; }
-        /// <summary>
-        /// Вызываеться при столкновении
-        /// </summary>
-        event Action<IColision2D> Colisioned;
-    }
-    //py
-    public interface IRendererModel : IDrawable, IUpdatebleTime/*, IComponent<IGameEntity>*/
-    {
-        IDrawable Source { get; set; }
-        event Action<object, IRendererModel> IRendererModelChanged;
-    }
+    //public interface IColision : IUpdateable {
+    //    IPhisycModel ParentPhisycModel { get; set; }
+    //    event Action<IColision> OnColisionEnter;
+    //    event Action<IColision> OnColisionExit;
+    //    event Action<IColision> OnColisionStay;
+    //}
+    ////py
+    //public interface IColision2D : IColision
+    //{
+    //    /// <summary>
+    //    /// Область обьекта(размеры)
+    //    /// </summary>
+    //    Rectangle ColisionArea { get; set; }
+    //    /// <summary>
+    //    /// Вызываеться при столкновении
+    //    /// </summary>
+    //    event Action<IColision2D> Colisioned;
+    //}
+    ////py
+    //public interface IRendererModel : IDrawable, IUpdatebleTime/*, IComponent<IGameEntity>*/
+    //{
+    //    IDrawable Source { get; set; }
+    //    event Action<object, IRendererModel> IRendererModelChanged;
+    //}
 }

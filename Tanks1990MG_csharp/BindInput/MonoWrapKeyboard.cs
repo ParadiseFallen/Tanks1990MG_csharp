@@ -11,7 +11,7 @@ namespace Tanks1990MG_csharp.Application.InputMG
     class MonoWrapKeyboard : GameComponent
     {
         private IBindebleInputDevice BindebleInputDevice;
-        public MonoWrapKeyboard(Game game, IBindebleInputDevice bindebleInputDevice) : base(game)
+        public MonoWrapKeyboard(Microsoft.Xna.Framework.Game game, IBindebleInputDevice bindebleInputDevice) : base(game)
         {
             BindebleInputDevice = bindebleInputDevice;
         }

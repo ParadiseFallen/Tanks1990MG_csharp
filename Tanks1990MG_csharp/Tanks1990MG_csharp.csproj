@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -13,9 +13,10 @@
     <AssemblyName>Tanks1990MG_csharp</AssemblyName>
     <FileAlignment>512</FileAlignment>
     <MonoGamePlatform>Windows</MonoGamePlatform>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
     <PlatformTarget>x86</PlatformTarget>
@@ -47,31 +48,40 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Application\App.cs" />
-    <Compile Include="Application\GameEntityes\EntityController.cs" />
-    <Compile Include="Application\GameEntityes\GraphicController.cs" />
-    <Compile Include="Application\GameEntityes\Interfaces\IComponent.cs" />
-    <Compile Include="Application\GameEntityes\Interfaces\IControllerModel.cs" />
-    <Compile Include="Application\GameEntityes\Interfaces\IGameEntity.cs" />
-    <Compile Include="Application\GameEntityes\Solutions\Fabric\Builders\IEntityBuilder.cs" />
-    <Compile Include="Application\GameEntityes\Solutions\Fabric\Builders\TankBuilder.cs" />
-    <Compile Include="Application\GameEntityes\Solutions\Fabric\EntityBuilder.cs" />
-    <Compile Include="Application\GameEntityes\Solutions\GameEntity.cs" />
-    <Compile Include="Application\InputMG\Interfaces\IBindebleInputDevice.cs" />
-    <Compile Include="Application\InputMG\Interfaces\IBindebleKey.cs" />
-    <Compile Include="Application\InputMG\MonoWrapKeyboard.cs" />
-    <Compile Include="Application\InputMG\Solutions\BindableInputDevice.cs" />
-    <Compile Include="Application\InputMG\Solutions\BindibleKey.cs" />
-    <Compile Include="Application\InputMG\Solutions\KeyInterpretator.cs" />
-    <Compile Include="Application\InputMG\Solutions\KeyMetadata.cs" />
+    <Compile Include="Application\ApplicationSettings.cs" />
+    <Compile Include="Application\Game\GameEntityes\Components\PositionComponent.cs" />
+    <Compile Include="Application\Game\GameEntityes\Components\Models\PhisycModel.cs" />
+    <Compile Include="Application\Game\GameEntityes\Components\Models\StaticRendererComponentModel.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\RendererDecorator.cs" />
+    <Compile Include="Application\Game\GameEntityes\GraphicController.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\GUID_Decorator.cs" />
+    <Compile Include="Application\States\GraphicView.cs" />
+    <Compile Include="EMCS\EMCS.cs" />
+    <Compile Include="Application\Game\GameEntityes\Interfaces\IControllerModel.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\IEntityDecorator.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\PhisycModelDecorator.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\BuildingWrap.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\EntityBuilder.cs" />
+    <Compile Include="Application\Game\GameEntityes\Fabric\EntityProvider\CustomEntityProvider.cs" />
+    <Compile Include="BindInput\Interfaces\IBindebleInputDevice.cs" />
+    <Compile Include="BindInput\Interfaces\IBindebleKey.cs" />
+    <Compile Include="BindInput\MonoWrapKeyboard.cs" />
+    <Compile Include="BindInput\Solutions\BindableInputDevice.cs" />
+    <Compile Include="BindInput\Solutions\BindibleKey.cs" />
+    <Compile Include="BindInput\Solutions\KeyInterpretator.cs" />
+    <Compile Include="BindInput\Solutions\KeyMetadata.cs" />
     <Compile Include="Application\Interfaces\Interfaces.cs" />
-    <Compile Include="Application\Logic\Graphic\ObjectRendererSprite.cs" />
-    <Compile Include="Application\Logic\Phisyc\2dPhisyc.cs" />
-    <Compile Include="Application\Logic\Phisyc\IPhisycModel.cs" />
     <Compile Include="Application\Providers\Interfaces\IProviderT.cs" />
     <Compile Include="Application\Providers\Solutions\SampleKeyFileProvider.cs" />
     <Compile Include="Application\States\Interfaces\IAppState.cs" />
+    <Compile Include="Application\States\States\GameState.cs" />
     <Compile Include="Application\States\States\LoadingScreen.cs" />
-    <Compile Include="Trasholder\AppState.cs" />
+    <Compile Include="EMCS\Interfaces\Components\Component\IComponentContainer.cs" />
+    <Compile Include="EMCS\Interfaces\Components\Model\IEntityComponentModel.cs" />
+    <Compile Include="EMCS\Interfaces\Components\Model\IModelBehavior.cs" />
+    <Compile Include="EMCS\Interfaces\Utils\IChildContainerT.cs" />
+    <Compile Include="EMCS\Interfaces\Utils\IEntityComponentT.cs" />
+    <Compile Include="EMCS\Interfaces\Utils\IHaveParrentT.cs" />
     <Compile Include="Application\States\States\MainMenuAppState.cs" />
     <Compile Include="Application\States\States\TestState.cs" />
     <Compile Include="Application\States\StateBuilder.cs" />
@@ -79,30 +89,47 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Castle.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=407dd0808d44fbdc, processorArchitecture=MSIL">
+      <HintPath>..\packages\Castle.Core.4.4.0\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
     <Reference Include="info.lundin.math, Version=1.2.6.0, Culture=neutral, PublicKeyToken=2f7fe9ec5efab85f, processorArchitecture=MSIL">
       <HintPath>..\packages\info.lundin.math.dll.1.2.6\lib\net40\info.lundin.math.dll</HintPath>
     </Reference>
     <Reference Include="MonoGame.Framework">
       <HintPath>$(MonoGameInstallDirectory)\MonoGame\v3.0\Assemblies\Windows\MonoGame.Framework.dll</HintPath>
     </Reference>
-    <Reference Include="Myra, Version=0.9.8.194, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Myra.0.9.8.194\lib\net45\Myra.dll</HintPath>
+    <Reference Include="Moq, Version=4.13.0.0, Culture=neutral, PublicKeyToken=69f491c39445e920, processorArchitecture=MSIL">
+      <HintPath>..\packages\Moq.4.13.1\lib\net45\Moq.dll</HintPath>
     </Reference>
-    <Reference Include="StbImageSharp, Version=2.22.2.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\StbImageSharp.2.22.2\lib\net45\StbImageSharp.dll</HintPath>
+    <Reference Include="Myra, Version=0.9.8.196, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Myra.0.9.8.196\lib\net45\Myra.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.0\lib\netstandard1.0\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.3\lib\portable-net45+win8+wp8+wpa81\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml" />
+    <Reference Include="XNAssets, Version=0.5.0.1, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\XNAssets.0.5.0.1\lib\net45\XNAssets.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
     <MonoGameContentReference Include="Content\Content.mgcb" />
+    <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Application\Game\GameEntityes\Solutions\" />
+    <Folder Include="Trasholder\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

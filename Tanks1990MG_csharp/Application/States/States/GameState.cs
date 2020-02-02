@@ -10,13 +10,21 @@ using Tanks1990MG_csharp.Application.States.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.States.States
 {
-    class LoadingScreen : IAppState
+    class GameState : IAppState
     {
-        public bool Initialized { get; set; } = false;
-        public bool DontUnloadFromMemory { get; set; } = true;
-        public List<IBindebleKey> StateKeyboardLayout { get; set; } = null;
+        EMCS.Realisations.System.EntitySystem EntitySystem = new EMCS.Realisations.System.EntitySystem();
+        public bool Initialized { get; set; }
+        public bool DontUnloadFromMemory { get; set; }
+        public List<IBindebleKey> StateKeyboardLayout { get; set; }
+        //public Panel GUI { get; set ; }
 
         public event Action<StateBuilder.StateID> ChangeStateRequest;
+
+        public GameState()
+        {
+            //EntitySystem.Systems.AddSystem();
+            /*Build all entityes*/
+        }
 
         public void Draw(GraphicsDevice graphicsDevice)
         {
@@ -35,7 +43,7 @@ namespace Tanks1990MG_csharp.Application.States.States
 
         public void Update(GameTime time)
         {
-
+            EntitySystem.Update(time);
         }
     }
 }
