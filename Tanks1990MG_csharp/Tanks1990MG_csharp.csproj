@@ -128,6 +128,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="BindInput\BindingInput.txt" />
     <Content Include="ECS\EMCS.txt" />
     <Content Include="Icon.ico" />
   </ItemGroup>

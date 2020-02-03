@@ -21,6 +21,5 @@ namespace Tanks1990MG_csharp.Application.InputMG
             BindebleInputDevice.Update(gameTime);
             base.Update(gameTime);
         }
-
     }
 }

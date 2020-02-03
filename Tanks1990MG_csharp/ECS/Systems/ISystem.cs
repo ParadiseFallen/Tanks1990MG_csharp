@@ -11,7 +11,8 @@ namespace EMCS.Interfaces.System
 {
     public interface ISystem : IUpdateable
     {
-        ComponentsSignature Target { get; }
+        ComponentsSignature TargetSignature { get; }
+        Type TargetComponent { get; }
         void AddEntity(IEntity gameEntity);
         void RemoveEntity(IEntity gameEntity);
         void Start();
