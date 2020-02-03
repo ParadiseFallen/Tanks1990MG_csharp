@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace EMCS.Interfaces
 {
-    public interface IChildContainer<T>
+    public interface IChildContainer<T>: IHaveParent<T>
     {
         //у сущности могут быть наследники
         List<T> ChildEntities { get; }

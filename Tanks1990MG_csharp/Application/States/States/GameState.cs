@@ -12,7 +12,6 @@ namespace Tanks1990MG_csharp.Application.States.States
 {
     class GameState : IAppState
     {
-        EMCS.Realisations.System.EntitySystem EntitySystem = new EMCS.Realisations.System.EntitySystem();
         public bool Initialized { get; set; }
         public bool DontUnloadFromMemory { get; set; }
         public List<IBindebleKey> StateKeyboardLayout { get; set; }
@@ -43,7 +42,6 @@ namespace Tanks1990MG_csharp.Application.States.States
 
         public void Update(GameTime time)
         {
-            EntitySystem.Update(time);
         }
     }
 }

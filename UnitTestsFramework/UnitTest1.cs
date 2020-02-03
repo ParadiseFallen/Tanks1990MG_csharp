@@ -35,7 +35,7 @@ namespace UnitTestsFramework
         public class MockComponent : IEntityComponent<IComponentsContainer>
         {
             public IComponentsContainer Parent { get ; set ; }
-            public bool Activated { get ; set ; }
+            public bool IsActivated { get ; set ; }
 
             public bool Enabled => throw new NotImplementedException();
 

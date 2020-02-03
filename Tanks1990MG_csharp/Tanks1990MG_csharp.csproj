@@ -56,7 +56,10 @@
     <Compile Include="Application\Game\GameEntityes\GraphicController.cs" />
     <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\GUID_Decorator.cs" />
     <Compile Include="Application\States\GraphicView.cs" />
-    <Compile Include="EMCS\EMCS.cs" />
+    <Compile Include="ECS\Components\Signature.cs" />
+    <Compile Include="ECS\Containers\EntityContainer.cs" />
+    <Compile Include="ECS\Containers\SystemStorage.cs" />
+    <Compile Include="Trasholder\EMCS.cs" />
     <Compile Include="Application\Game\GameEntityes\Interfaces\IControllerModel.cs" />
     <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\IEntityDecorator.cs" />
     <Compile Include="Application\Game\GameEntityes\Fabric\Decorators\PhisycModelDecorator.cs" />
@@ -76,12 +79,19 @@
     <Compile Include="Application\States\Interfaces\IAppState.cs" />
     <Compile Include="Application\States\States\GameState.cs" />
     <Compile Include="Application\States\States\LoadingScreen.cs" />
-    <Compile Include="EMCS\Interfaces\Components\Component\IComponentContainer.cs" />
-    <Compile Include="EMCS\Interfaces\Components\Model\IEntityComponentModel.cs" />
-    <Compile Include="EMCS\Interfaces\Components\Model\IModelBehavior.cs" />
-    <Compile Include="EMCS\Interfaces\Utils\IChildContainerT.cs" />
-    <Compile Include="EMCS\Interfaces\Utils\IEntityComponentT.cs" />
-    <Compile Include="EMCS\Interfaces\Utils\IHaveParrentT.cs" />
+    <Compile Include="ECS\Components\ComponentsContainer\ComponentContainers.cs" />
+    <Compile Include="ECS\Components\Component.cs" />
+    <Compile Include="ECS\Components\BehaviorComponents\ComponentBehaviors.cs" />
+    <Compile Include="ECS\Entity\Entity.cs" />
+    <Compile Include="ECS\Entity\IEntity.cs" />
+    <Compile Include="ECS\Systems\ISystem.cs" />
+    <Compile Include="ECS\Systems\ISystemStorage.cs" />
+    <Compile Include="ECS\Systems\MainSystem\EntitySystem.cs" />
+    <Compile Include="ECS\Systems\MainSystem\IEntitySystem.cs" />
+    <Compile Include="ECS\Systems\SubSystems\System.cs" />
+    <Compile Include="ECS\Utils\IChildContainerT.cs" />
+    <Compile Include="ECS\Utils\IEntityComponentT.cs" />
+    <Compile Include="ECS\Utils\IHaveParrentT.cs" />
     <Compile Include="Application\States\States\MainMenuAppState.cs" />
     <Compile Include="Application\States\States\TestState.cs" />
     <Compile Include="Application\States\StateBuilder.cs" />
@@ -118,6 +128,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ECS\EMCS.txt" />
     <Content Include="Icon.ico" />
   </ItemGroup>
   <ItemGroup>
@@ -128,7 +139,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Application\Game\GameEntityes\Solutions\" />
-    <Folder Include="Trasholder\" />
+    <Folder Include="ECS\Systems\SubSystems\Systems\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath)\MonoGame\v3.0\MonoGame.Content.Builder.targets" />

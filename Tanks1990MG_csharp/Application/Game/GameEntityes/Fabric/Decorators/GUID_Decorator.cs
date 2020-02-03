@@ -14,7 +14,7 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.Decorator
 
         public EntityBuilder Builder { get ; set ; }
 
-        public void Decorate(IGameEntity entity)
+        public void Decorate(IEntity entity)
         {
             entity.GUID = _count++;
         }

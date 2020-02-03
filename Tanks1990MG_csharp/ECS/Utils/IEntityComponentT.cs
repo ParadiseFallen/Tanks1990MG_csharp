@@ -14,7 +14,8 @@ namespace EMCS.Interfaces
         //ссылка на родителя
         T Parent { get; }
         //был ли активирован правильно, или еще требует активации
-        bool Activated { get; }
+        bool IsActivated { get; }
+        bool IsPartOfBehavior { get; set; }
         #endregion
 
         #region Methods

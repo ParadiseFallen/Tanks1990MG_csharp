@@ -1,5 +1,4 @@
-﻿using EMCS.Interfaces.Entity;
-using Microsoft.Xna.Framework;
+﻿using Microsoft.Xna.Framework;
 using System;
 using Tanks1990MG_csharp.Application.Interfaces;
 
@@ -10,8 +9,5 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Interfaces
     //    void Execute(IGameEntity entity,EventArgs args);
     //}
     
-    public interface IControllerModel : IUpdateable
-    {
-        IGameEntity Entity { get; set; }
-    }
+    
 }

@@ -9,14 +9,14 @@ using Tanks1990MG_csharp.Application.Providers.Interfaces;
 
 namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.EntityProvider
 {
-    class CustomEntityProvider : IProvider<IGameEntity>
+    class CustomEntityProvider : IProvider<IEntity>
     {
         public Predicate<string> Filter { get; set; }
-        public IGameEntity Get()
+        public IEntity Get()
         {
-            return new CustomEntity();
+            return new Entity();
         }
-        public void Place(IGameEntity data)
+        public void Place(IEntity data)
         {
         }
     }

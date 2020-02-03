@@ -11,13 +11,13 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric
     {
         #region Data
         public EntityBuilder Builder { get; }
-        private IGameEntity currentEntity;
+        private IEntity currentEntity;
         #endregion
         #region Events
-        public event Action<object, IGameEntity> EntityConstruct;
+        public event Action<object, IEntity> EntityConstruct;
         #endregion
         #region Data accesor
-        public IGameEntity Resault { get { EntityConstruct?.Invoke(this, currentEntity); return currentEntity; } }
+        public IEntity Resault { get { EntityConstruct?.Invoke(this, currentEntity); return currentEntity; } }
         #endregion
         #region Ctors
         public BuildingWrap(EntityBuilder Builder)

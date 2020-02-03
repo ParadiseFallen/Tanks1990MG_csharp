@@ -1,6 +1,5 @@
 ﻿using EMCS.Interfaces;
 using EMCS.Interfaces.Entity;
-using EMCS.Realisations.Components.Component;
 using Microsoft.Xna.Framework;
 using System;
 using System.Collections.Generic;
@@ -12,7 +11,7 @@ using System.Threading.Tasks;
 namespace Tanks1990MG_csharp.Application.GameEntityes.Components
 {
 
-    class PositionComponent : StandartComponent
+    class PositionComponent : EMCS.Realisations.Components.Component
     {
         public override event PropertyChangedEventHandler PropertyChanged;
 
@@ -21,15 +20,15 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Components
         public Vector3 Position { get { return _Position; } set { _Position = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Position_Vector3")); } }
         public Vector3 Rotation { get { return _Rotation; } set { _Rotation = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Rotation_Vector3")); } }
 
-        public override void WayToAtivate(IGameEntity parrent)
+        public override void WayToAtivate(IEntity parrent)
         {
-            Activated = true;
+            IsActivated = true;
             base.WayToAtivate(parrent);
         }
 
-        public override void WayToDeativate(IGameEntity parrent)
+        public override void WayToDeativate(IEntity parrent)
         {
-            Activated = false;
+            IsActivated = false;
             base.WayToDeativate(parrent);
         }
     }

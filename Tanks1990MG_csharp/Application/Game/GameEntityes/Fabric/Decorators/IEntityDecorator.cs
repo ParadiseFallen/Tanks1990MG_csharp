@@ -11,6 +11,6 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.Builders
     public interface IEntityDecorator
     {
         EntityBuilder Builder { get; set; }
-        void Decorate(IGameEntity entity);
+        void Decorate(IEntity entity);
     }
 }

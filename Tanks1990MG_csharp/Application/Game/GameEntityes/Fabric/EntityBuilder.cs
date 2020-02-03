@@ -28,7 +28,7 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions
          Список провайдеров пустых экземпляров обьектов
              */
         public Dictionary<string, IEntityDecorator> Decorators { get; } = new Dictionary<string, IEntityDecorator>();
-        public Dictionary<string, IProvider<IGameEntity>> EntityProvider { get; } = new Dictionary<string, IProvider<IGameEntity>>();
+        public Dictionary<string, IProvider<IEntity>> EntityProvider { get; } = new Dictionary<string, IProvider<IEntity>>();
         public ContentManager Content { get; set; }
         private EntityBuilder()
         {

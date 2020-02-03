@@ -16,9 +16,9 @@ namespace Tanks1990MG_csharp.Application.Game.GameEntityes.Fabric.Decorators
     {
         public EntityBuilder Builder { get ; set ; }
 
-        public void Decorate(IGameEntity entity)
+        public void Decorate(IEntity entity)
         {
-            entity.Components.AddComponent(new StaticRendererComponentModel() { Drawable = new Sprite() { Texture =  Builder.Content.Load<Texture2D>("Tank")} }); ;
+           // entity.Components.AddComponent(new StaticRendererComponentModel() { Drawable = new Sprite() { Texture =  Builder.Content.Load<Texture2D>("Tank")} }); ;
         }
     }
 }
