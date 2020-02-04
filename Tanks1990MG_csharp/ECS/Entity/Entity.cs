@@ -16,9 +16,15 @@ namespace EMCS.Realisations.Entity
         public string TAG { get; set; } = "";
         public int GUID { get; set; } = -1;
         //Components
-        public IComponentsContainer Components { get; set; } 
+        public IComponentsContainer Components { get; set; } = new ComponentContainer();
         //childs
-        public IChildContainer<IEntity> Childs { get; }
+        public IChildContainer<IEntity> Childs { get; } = new Containers.EntityContainer();
+
+        private static IChildContainer<IEntity> EntityContainer()
+        {
+            throw new NotImplementedException();
+        }
+
         //public List<IEntity> ChildEntities { get; } = new List<IEntity>();
         //parrent
         public IEntity ParentEntity { get; set; } = null;
@@ -33,6 +39,7 @@ namespace EMCS.Realisations.Entity
         public Entity()
         {
             Components.Parent = this;
+            Childs.ParentEntity = this;
         }
 
         #region Methods

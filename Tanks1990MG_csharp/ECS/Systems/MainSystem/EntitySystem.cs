@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tanks1990MG_csharp.ECS.Systems.MainSystem
+namespace ECS.Systems.MainSystem
 {
     public class EntitySystemMONOGAME : IEntitySystem,IUpdateable
     {

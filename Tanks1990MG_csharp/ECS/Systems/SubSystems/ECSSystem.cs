@@ -11,14 +11,14 @@ using System.Threading.Tasks;
 
 namespace EMCS.Systems.SubSystems
 {
-    class System : ISystem
+    class ECSSystem : ISystem
     {
         public List<IEntityComponent<IEntity>> EntityComponents { get; } = new List<IEntityComponent<IEntity>>();
         public bool Enabled { get; set; }
         public int UpdateOrder { get; set; }
 
-        public ComponentsSignature TargetSignature { get; set; }
-        public Type TargetComponent { get; set; }
+        virtual public ComponentsSignature TargetSignature { get; }
+        virtual public Type TargetComponent { get; }
 
         virtual public event EventHandler<EventArgs> EnabledChanged;
         virtual public event EventHandler<EventArgs> UpdateOrderChanged;

@@ -1,19 +1,11 @@
-﻿using EMCS.Interfaces.Entity;
+﻿using ECS.Fabric.Decorators;
+using EMCS.Interfaces.Entity;
 using Microsoft.Xna.Framework.Content;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Tanks1990MG_csharp.Application.Game.GameEntityes.Fabric.Decorators;
-using Tanks1990MG_csharp.Application.GameEntityes.Interfaces;
-using Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric;
-using Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.Builders;
-using Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.Decorators;
-using Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.EntityProvider;
 using Tanks1990MG_csharp.Application.Providers.Interfaces;
 
-namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions
+namespace ECS.Fabric
 {
     //создание любой сущности происходит через фабоику
     public class EntityBuilder
@@ -35,8 +27,8 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions
             //push providers
             EntityProvider.Add("CustomEntity", new CustomEntityProvider());
             //push decorators
-            Decorators.Add("AutoGUID", new GUID_Decorator());
-            Decorators.Add("TankTextureSprite", new RendererDecorator());
+            //Decorators.Add("AutoGUID", new GUID_Decorator());
+            //Decorators.Add("TankTextureSprite", new RendererDecorator());
            
         }
 

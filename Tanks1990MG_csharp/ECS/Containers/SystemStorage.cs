@@ -14,7 +14,7 @@ namespace EMCS.Realisations.System
         public event Action<object, ISystem> OnRemoveSystem;
 
         /// <summary>
-        /// Add new System
+        /// Add new ECSSystem
         /// </summary>
         /// <param name="system">New system to add</param>
         /// <returns>Sucsess or not</returns>

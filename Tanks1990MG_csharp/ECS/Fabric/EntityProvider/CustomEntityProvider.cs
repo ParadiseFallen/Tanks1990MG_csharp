@@ -7,7 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tanks1990MG_csharp.Application.Providers.Interfaces;
 
-namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.EntityProvider
+namespace ECS.Fabric
 {
     class CustomEntityProvider : IProvider<IEntity>
     {

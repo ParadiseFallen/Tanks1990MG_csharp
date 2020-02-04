@@ -19,7 +19,7 @@ using System.Linq;
  Модель : rjyntqyth rjvgjytynjd c gjdtltybtv
      */
      /*Разложить и улучшить*/
-//namespace EMCS.Interfaces.System
+//namespace EMCS.Interfaces.ECSSystem
 //{
 //    //public interface ISystemBehavior
 //    //{ 

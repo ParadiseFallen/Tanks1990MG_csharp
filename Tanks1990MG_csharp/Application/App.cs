@@ -1,11 +1,11 @@
-﻿using Microsoft.CSharp;
+﻿using ECS.Fabric;
+using Microsoft.CSharp;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Tanks1990MG_csharp.Application.GameEntityes.Solutions;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States;
 using Tanks1990MG_csharp.Application.States.Interfaces;
@@ -43,6 +43,9 @@ namespace Tanks1990MG_csharp.Application
             KeyInterpretator.Instance.Provider = new Providers.Solutions.SampleKeyFileProvider() { Link = "file.ly" };
 
             EntityBuilder.BuilderInstance.Content = Content;
+
+
+
         }
 
         /// <summary>

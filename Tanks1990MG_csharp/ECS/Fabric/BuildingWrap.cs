@@ -5,20 +5,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric
+namespace ECS.Fabric
 {
     public class BuildingWrap
     {
         #region Data
         public EntityBuilder Builder { get; }
+
         private IEntity currentEntity;
         #endregion
+
         #region Events
         public event Action<object, IEntity> EntityConstruct;
         #endregion
+
         #region Data accesor
         public IEntity Resault { get { EntityConstruct?.Invoke(this, currentEntity); return currentEntity; } }
         #endregion
+
         #region Ctors
         public BuildingWrap(EntityBuilder Builder)
         {
@@ -26,6 +30,12 @@ namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric
         }
         #endregion
         #region Methods
+        public BuildingWrap AutoBuild(DecorationChain chain)
+        {
+
+
+            return this;
+        }
         public BuildingWrap StartBuild(string ProviderName)
         {
             currentEntity = Builder.EntityProvider[ProviderName].Get();

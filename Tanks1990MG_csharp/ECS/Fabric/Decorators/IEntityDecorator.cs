@@ -6,8 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Tanks1990MG_csharp.Application.GameEntityes.Interfaces;
 
-namespace Tanks1990MG_csharp.Application.GameEntityes.Solutions.Fabric.Builders
-{
+namespace ECS.Fabric.Decorators{
     public interface IEntityDecorator
     {
         EntityBuilder Builder { get; set; }

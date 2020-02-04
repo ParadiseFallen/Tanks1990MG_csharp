@@ -1,10 +1,10 @@
-﻿//using System;
-//using System.Collections.Generic;
-//using System.Collections.ObjectModel;
-//using System.Collections.Specialized;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+﻿//using ECSSystem;
+//using ECSSystem.Collections.Generic;
+//using ECSSystem.Collections.ObjectModel;
+//using ECSSystem.Collections.Specialized;
+//using ECSSystem.Linq;
+//using ECSSystem.Text;
+//using ECSSystem.Threading.Tasks;
 //using Microsoft.Xna.Framework.Graphics;
 //using Tanks1990MG_csharp.Application.Interfaces;
 
