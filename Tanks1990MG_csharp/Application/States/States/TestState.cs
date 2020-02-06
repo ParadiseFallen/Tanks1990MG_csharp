@@ -39,6 +39,18 @@ namespace Tanks1990MG_csharp.Application.States.Solution
         //public EntityController EntityController = new EntityController();
         IEntity ent;
         EntitySystemMONOGAME entitySystem = new EntitySystemMONOGAME();
+        
+        
+        //Func<GameTime,bool> Try;
+        /*Это работает!!!*/
+        //Try = CSScriptLibrary.CSScript.Evaluator.LoadDelegate<Func<GameTime,bool>>(@"
+        //    using Microsoft.Xna.Framework;
+        //    using Microsoft.Xna.Framework.Input;
+        //    bool any(GameTime time)
+        //    {
+        //        return Keyboard.GetState().IsKeyDown(Keys.A)&&Keyboard.GetState().IsKeyDown(Keys.B);
+        //    }
+        //    ");
         public TestState()
         {
             EntityBuilder.BuilderInstance.Decorators.Add("PhisycModelDecorator", new PhisycModelDecorator());
@@ -53,7 +65,10 @@ namespace Tanks1990MG_csharp.Application.States.Solution
             controller.Target = ent;
             entitySystem.Entities.AddChild(ent);
 
-            ent.Components.GetComponent<PhisycComponent>().PropertyChanged += (s, a) => { Console.WriteLine($"Position : {(s as PhisycComponent).Position}"); };
+            //ent.Components.GetComponent<PhisycComponent>().PropertyChanged += (s, a) => { Console.WriteLine($"Position : {(s as PhisycComponent).Position}"); };
+            
+
+            
 
             /*Control entity*/
             StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_W", () => { return Keyboard.GetState().IsKeyDown(Keys.W); }, () => { controller.MoveEntity(new Vector3( 0,  100, 0)); }));

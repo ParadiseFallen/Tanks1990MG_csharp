@@ -14,10 +14,17 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
             this.ActionF = ActionF;
             if (ActionF == null) ActionF = new List<string>();
         }
+
         public string Description { get; set; }
         public List<string> ActionF { get; set; }
+
+        #region Triger
         public string Triger { get; set; }
+        public string TrigerCode { get; set; }
+        #endregion
+        #region Repeating
         public bool RepeatDelayEnabled { get; set; }
         public int RepeatDelayMS { get; set; }
+        #endregion
     }
 }
