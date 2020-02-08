@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace ECS.Systems.MainSystem
 {
-    public class EntitySystemMONOGAME : IEntitySystem,IUpdateable
+    public class EntitySystemMONOGAME : IEntitySystem, IUpdateable
     {
         //systems
         public ISystemStorage Systems { get; } = new SystemStorage();
@@ -23,28 +23,40 @@ namespace ECS.Systems.MainSystem
         public bool Enabled { get; set; } = true;
 
         public int UpdateOrder { get; set; } = 0;
+
+        private void AddSystemLink(ISystem system,object obj,IEntity entity)
+        {
+            Entities.OnChildAdded += (EntityContainer, NewEntity) =>
+            {
+                system.AddEntity(NewEntity);
+                NewEntity.Childs.OnChildAdded += (ChildContainer, NewChildEntity) =>
+                {
+                    AddSystemLink(system,ChildContainer,NewChildEntity);
+                };
+            };
+        }
+
         public EntitySystemMONOGAME()
         {
             //При добавлении какой либо новой системы мы говорим что Entities.OnChildAdded будет вызывать метод добавления сущности в эту систему
-            Systems.OnAddSystem += (Ss, Sa) => {
+            Systems.OnAddSystem += (mainSystem, NewAddedSystem) =>
+            {
+
                 //Теперь добавление в Entities будет вызывать добавление в систему
                 //При добавлении в систему
-                Entities.OnChildAdded += (Esender, Earg) => {
-                    Earg.Childs.OnChildAdded += (s, a) => { Sa.AddEntity(Earg); };
-                    Sa.AddEntity(Earg);
-                };
-                //Теперь добавление в Entities будет вызывать удаление из системы
-                Entities.OnChildRemoved += (Esender, Earg) => {
-                    Earg.Childs.OnChildRemoved += (s, a) => { Sa.AddEntity(Earg); };
-                    Sa.RemoveEntity(Earg);
-                };
+                Entities.OnChildAdded += (container,child)=> { AddSystemLink(NewAddedSystem, container, child); };
+
+                Entities.OnChildRemoved -= (container, child) => { AddSystemLink(NewAddedSystem, container, child); };
             };
-            Systems.OnRemoveSystem += (Ss, Sa) => {
-                Entities.OnChildAdded -= (Esender, Earg) => {
+            Systems.OnRemoveSystem += (Ss, Sa) =>
+            {
+                Entities.OnChildAdded -= (Esender, Earg) =>
+                {
                     Earg.Childs.OnChildAdded -= (s, a) => { Sa.AddEntity(Earg); };
                     Sa.AddEntity(Earg);
                 };
-                Entities.OnChildRemoved -= (Esender, Earg) => {
+                Entities.OnChildRemoved -= (Esender, Earg) =>
+                {
                     Earg.Childs.OnChildRemoved -= (s, a) => { Sa.AddEntity(Earg); };
                     Sa.RemoveEntity(Earg);
                 };

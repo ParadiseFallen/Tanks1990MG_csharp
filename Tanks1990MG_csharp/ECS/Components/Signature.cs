@@ -49,9 +49,9 @@ namespace EMCS.Realisations.Signatures
         //эквивалентны ли сигнатруы
         public bool Equals(ComponentsSignature other)
         {
-            foreach (var item in Signature)
+            foreach (var item in other.Signature)
             {
-                if (!other.Signature.Contains(item))
+                if (!this.Signature.Contains(item))
                     return false;
             }
             return true;

@@ -2,8 +2,6 @@
 using System;
 using System.ComponentModel;
 using EMCS.Interfaces;
-using EMCS.Interfaces.Components.Component;
-using EMCS.Interfaces.Entity;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.Xna.Framework;
 
@@ -32,43 +30,43 @@ namespace UnitTestsFramework
             Console.ReadKey();
 #endif
         }
-        public class MockComponent : IEntityComponent<IComponentsContainer>
-        {
-            public IComponentsContainer Parent { get ; set ; }
-            public bool IsActivated { get ; set ; }
+        //public class MockComponent : IEntityComponent<IComponentsContainer>
+        //{
+        //    public IComponentsContainer Parent { get ; set ; }
+        //    public bool IsActivated { get ; set ; }
 
-            public bool Enabled => throw new NotImplementedException();
+        //    public bool Enabled => throw new NotImplementedException();
 
-            public int UpdateOrder => throw new NotImplementedException();
+        //    public int UpdateOrder => throw new NotImplementedException();
 
-            public event Action<IEntityComponent<IComponentsContainer>> OnTryActivate;
-            public event Action<IEntityComponent<IComponentsContainer>> OnActivated;
-            public event Action<IEntityComponent<IComponentsContainer>> OnTryDeactevated;
-            public event Action<IEntityComponent<IComponentsContainer>> OnDeactevated;
-            public event Action<IEntityComponent<IComponentsContainer>> OnReset;
-            public event EventHandler<EventArgs> EnabledChanged;
-            public event EventHandler<EventArgs> UpdateOrderChanged;
-            public event PropertyChangedEventHandler PropertyChanged;
+        //    public event Action<IEntityComponent<IComponentsContainer>> OnTryActivate;
+        //    public event Action<IEntityComponent<IComponentsContainer>> OnActivated;
+        //    public event Action<IEntityComponent<IComponentsContainer>> OnTryDeactevated;
+        //    public event Action<IEntityComponent<IComponentsContainer>> OnDeactevated;
+        //    public event Action<IEntityComponent<IComponentsContainer>> OnReset;
+        //    public event EventHandler<EventArgs> EnabledChanged;
+        //    public event EventHandler<EventArgs> UpdateOrderChanged;
+        //    public event PropertyChangedEventHandler PropertyChanged;
 
-            public void Activate(IComponentsContainer parrent)
-            {
-                Console.WriteLine("ACTIVATED");
-            }
+        //    public void Activate(IComponentsContainer parrent)
+        //    {
+        //        Console.WriteLine("ACTIVATED");
+        //    }
 
-            public void Deactivate(IComponentsContainer parrent)
-            {
-                Console.WriteLine("DEACTIVATED");
-            }
+        //    public void Deactivate(IComponentsContainer parrent)
+        //    {
+        //        Console.WriteLine("DEACTIVATED");
+        //    }
 
-            public void Reset()
-            {
-                throw new NotImplementedException();
-            }
+        //    public void Reset()
+        //    {
+        //        throw new NotImplementedException();
+        //    }
 
-            public void Update(GameTime gameTime)
-            {
-                throw new NotImplementedException();
-            }
-        }
+        //    public void Update(GameTime gameTime)
+        //    {
+        //        throw new NotImplementedException();
+        //    }
+        //}
     }
 }

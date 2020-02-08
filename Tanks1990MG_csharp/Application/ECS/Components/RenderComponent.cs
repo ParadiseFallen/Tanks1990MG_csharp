@@ -10,14 +10,16 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
 {
     class RenderComponent : EMCS.Realisations.Components.Component
     {
-        public IAutoDraw Conrent { get; set; } = null;
-        PhisycComponent phisycComponent;
+        public IAutoDraw Source { get; set; } = null;
+
+        public PhisycComponent phisycComponent;
         public override void WayToAtivate(IEntity parrent)
         {
             phisycComponent = parrent.Components.GetComponent<PhisycComponent>();
             IsActivated = true;
             base.WayToAtivate(parrent);
         }
+        
         public override void WayToDeativate(IEntity parrent)
         {
             phisycComponent = null;

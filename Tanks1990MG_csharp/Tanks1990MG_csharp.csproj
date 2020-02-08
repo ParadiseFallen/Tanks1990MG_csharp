@@ -52,10 +52,11 @@
     <Compile Include="Application\ECS\Components\PhisycComponent.cs" />
     <Compile Include="Application\ECS\Components\RenderComponent.cs" />
     <Compile Include="Application\ECS\Dependencies\IAutoDraw.cs" />
-    <Compile Include="Application\ECS\Dependencies\IDrawData.cs" />
+    <Compile Include="Application\DrawData.cs" />
     <Compile Include="Application\ECS\Dependencies\Sprite2D.cs" />
     <Compile Include="Application\ECS\Systems\PhisycSystem.cs" />
     <Compile Include="Application\ECS\Systems\RenderSystem.cs" />
+    <Compile Include="Application\RenderSystem.cs" />
     <Compile Include="Trasholder\PositionComponent.cs" />
     <Compile Include="Application\Game\GameEntityes\Components\Models\PhisycModel.cs" />
     <Compile Include="Application\Game\GameEntityes\Components\Models\StaticRendererComponentModel.cs" />

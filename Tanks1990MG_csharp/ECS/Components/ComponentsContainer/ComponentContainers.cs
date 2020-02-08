@@ -18,6 +18,8 @@ namespace EMCS.Interfaces.Components.ComponentsContainer
         IEntityComponent<IEntity> GetComponent(Type ComponentType);
         //получить компонент по экземпляру
         IEntityComponent<IEntity> GetComponent(IEntityComponent<IEntity> Component);
+
+        IEntityComponent<IEntity> GetComponent(Func<IEntityComponent<IEntity>,bool> Filter);
         //добавить компонент
         bool AddComponent(IEntityComponent<IEntity> component);
         //убрать компонент
@@ -47,6 +49,7 @@ namespace EMCS.Realisations.Components.ComponentsContainer
         {
             if (Components.Contains(component))
                 return false;
+            component.Activate(Parent);
             Components.Add(component);
             return true;
         }
@@ -81,8 +84,19 @@ namespace EMCS.Realisations.Components.ComponentsContainer
             return null;
         }
 
+        public IEntityComponent<IEntity> GetComponent(Func<IEntityComponent<IEntity>, bool> Filter)
+        {
+            foreach (var item in Components)
+            {
+                if (Filter(item))
+                    return item;
+            }
+            return default;
+        }
+
         public bool RemoveComponent(IEntityComponent<IEntity> component)
         {
+            component.Deactivate(Parent);
             return Components.Remove(component);
         }
     }

@@ -6,6 +6,7 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Tanks1990MG_csharp.Application.ECS.Systems;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States;
 using Tanks1990MG_csharp.Application.States.Interfaces;
@@ -44,7 +45,7 @@ namespace Tanks1990MG_csharp.Application
 
             EntityBuilder.BuilderInstance.Content = Content;
 
-
+            
 
         }
 
@@ -85,6 +86,8 @@ namespace Tanks1990MG_csharp.Application
             Task.Run(() => ChangeState(StateBuilder.StateID.TEST)).Wait();
 
             base.Initialize();
+
+            RenderSystem.Instance.Init(graphics, Content);
         }
 
 
@@ -131,13 +134,10 @@ namespace Tanks1990MG_csharp.Application
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.Bisque);
-            spriteBatch.Begin();
-
+            RenderSystem.Instance.Draw(gameTime);
             //Myra.Graphics2D.UI.Desktop.Render();
             // TODO: Add your drawing code here
 
-            spriteBatch.End();
             base.Draw(gameTime);
         }
 

@@ -149,7 +149,10 @@ namespace Tanks1990MG_csharp.Application.InputMG.Solutions
         public void Update(GameTime time)
         {
             if (Enabled)
-                Keys.ForEach(i => i.Update(time));
+                for (int i = 0; i < Keys.Count; i++)
+                {
+                    Keys[i].Update(time);
+                }
         }
 
         public void AddRange(List<IBindebleKey> keys)

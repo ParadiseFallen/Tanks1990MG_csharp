@@ -18,12 +18,7 @@ namespace EMCS.Realisations.Entity
         //Components
         public IComponentsContainer Components { get; set; } = new ComponentContainer();
         //childs
-        public IChildContainer<IEntity> Childs { get; } = new Containers.EntityContainer();
-
-        private static IChildContainer<IEntity> EntityContainer()
-        {
-            throw new NotImplementedException();
-        }
+        public IChildContainer<IEntity> Childs { get; } = new Containers.EntityContainer();     
 
         //public List<IEntity> ChildEntities { get; } = new List<IEntity>();
         //parrent

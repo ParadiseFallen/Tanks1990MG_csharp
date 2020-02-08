@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Tanks1990MG_csharp.Application.ECS.Dependencies
 {
-    interface IAutoDraw
+    interface IAutoDraw  : IUpdateable
     {
+        int ZPoz { get; set; }
         Vector3 Position { get; set; }
         Vector3 Rotation{ get; set; }
         Vector3 Scale { get; set; }
-        void Draw();
+        void Draw(DrawData drawData);
     }
 }
