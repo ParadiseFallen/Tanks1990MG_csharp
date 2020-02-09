@@ -49,14 +49,23 @@
   <ItemGroup>
     <Compile Include="Application\App.cs" />
     <Compile Include="Application\ApplicationSettings.cs" />
+    <Compile Include="Application\ECS\Components\ColisionComponent.cs" />
+    <Compile Include="Application\ECS\Components\EntityController.cs" />
+    <Compile Include="Application\ECS\Components\NetworkComponent.cs" />
     <Compile Include="Application\ECS\Components\PhisycComponent.cs" />
     <Compile Include="Application\ECS\Components\RenderComponent.cs" />
     <Compile Include="Application\ECS\Dependencies\IAutoDraw.cs" />
     <Compile Include="Application\DrawData.cs" />
     <Compile Include="Application\ECS\Dependencies\Sprite2D.cs" />
+    <Compile Include="Application\ECS\FabricDecorators\ColisionDecorator.cs" />
+    <Compile Include="Application\ECS\FabricDecorators\ControlDecorator.cs" />
+    <Compile Include="Application\ECS\Prefabs.cs" />
+    <Compile Include="Application\ECS\Systems\ColisionSystem.cs" />
+    <Compile Include="Application\ECS\Systems\NetworkSystem.cs" />
     <Compile Include="Application\ECS\Systems\PhisycSystem.cs" />
     <Compile Include="Application\ECS\Systems\RenderSystem.cs" />
     <Compile Include="Application\RenderSystem.cs" />
+    <Compile Include="ECS\Fabric\Prefab.cs" />
     <Compile Include="Trasholder\PositionComponent.cs" />
     <Compile Include="Application\Game\GameEntityes\Components\Models\PhisycModel.cs" />
     <Compile Include="Application\Game\GameEntityes\Components\Models\StaticRendererComponentModel.cs" />

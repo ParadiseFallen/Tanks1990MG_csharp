@@ -45,13 +45,10 @@ namespace Tanks1990MG_csharp.Application
 
         private void Sort()
         {
-            Drawables.Sort((a,b)=> {
-                if ((a as IAutoDraw).ZPoz > (a as IAutoDraw).ZPoz)
-                    return 1;
-                if ((a as IAutoDraw).ZPoz < (a as IAutoDraw).ZPoz)
-                    return -1;
-                return 0;
-            });
+                var sorted = from a in Drawables
+                        orderby a.ZPoz
+                        select a;
+                Drawables =  sorted.ToList();
         }
 
         private void DrawToBufferRenderTarget()

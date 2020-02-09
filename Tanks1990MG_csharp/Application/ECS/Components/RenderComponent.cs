@@ -16,7 +16,8 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
         public override void WayToAtivate(IEntity parrent)
         {
             phisycComponent = parrent.Components.GetComponent<PhisycComponent>();
-            IsActivated = true;
+            if (phisycComponent != null)
+                IsActivated = true;
             base.WayToAtivate(parrent);
         }
         

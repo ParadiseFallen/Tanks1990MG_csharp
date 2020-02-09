@@ -19,6 +19,8 @@ namespace Tanks1990MG_csharp.Application.ECS.Systems
         {
             EntityComponents.ForEach(i=> {
                 var component = (i as PhisycComponent);
+                component.PrevPos = component.Position;
+
                 component.Position += component.Acceleration /* * gameTime*/;
                 component.Acceleration = Vector3.Lerp(component.Acceleration,Vector3.Zero,0.5f);
                 //Console.WriteLine($"Acc: {component.Acceleration}");

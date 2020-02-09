@@ -41,8 +41,8 @@ namespace Tanks1990MG_csharp.Application.States.Solution
         //public EntityController EntityController = new EntityController();
         IEntity ent;
         EntitySystemMONOGAME entitySystem = new EntitySystemMONOGAME();
-        
-        
+
+
         //Func<GameTime,bool> Try;
         /*Это работает!!!*/
         //Try = CSScriptLibrary.CSScript.Evaluator.LoadDelegate<Func<GameTime,bool>>(@"
@@ -53,39 +53,41 @@ namespace Tanks1990MG_csharp.Application.States.Solution
         //        return Keyboard.GetState().IsKeyDown(Keys.A)&&Keyboard.GetState().IsKeyDown(Keys.B);
         //    }
         //    ");
+        private EntityController entityController;
         public TestState()
         {
-            EntityBuilder.BuilderInstance.Decorators.Add("PhisycModelDecorator", new PhisycModelDecorator());
-            EntityBuilder.BuilderInstance.Decorators.Add("TankTextureSprite", new RendererDecorator());
+            //EntityBuilder.BuilderInstance.Decorators.Add("PhisycModelDecorator", new PhisycModelDecorator());
+            //EntityBuilder.BuilderInstance.Decorators.Add("TankTextureSprite", new RendererDecorator());
 
             //var t = EntityBuilder.BuilderInstance.GetWrap().StartBuild("CustomEntity").Decorate("TankTextureSprite").Resault;
             
             
             entitySystem.Systems.AddSystem(new PhisycSystem());
             entitySystem.Systems.AddSystem(new ECS.Systems.RenderSystem());
+            entitySystem.Systems.AddSystem(new ColisionSystem2D());
 
 
             //EntityController.Entities.CollectionChanged += GraphicController.UpdateCollection;
-            ent = EntityBuilder.BuilderInstance.GetWrap().StartBuild("CustomEntity").Decorate("PhisycModelDecorator").Decorate("TankTextureSprite").Resault;
-            var ent2 = EntityBuilder.BuilderInstance.GetWrap().StartBuild("CustomEntity").Decorate("PhisycModelDecorator").Decorate("TankTextureSprite").Resault;
+            ent = EntityBuilder.BuilderInstance.GetWrap().StartBuild("CustomEntity").Decorate("PhisycModelDecorator").Decorate("TankTextureSprite").Decorate("ColisionDecorator").Resault;
+            var ent4 = EntityBuilder.BuilderInstance.GetWrap().StartBuild("CustomEntity").Decorate("PhisycModelDecorator").Decorate("TankTextureSprite").Decorate("ColisionDecorator").Decorate("ControllerDecorator").Resault;
             //controller.Target = ent;
             entitySystem.Entities.AddChild(ent);
+            entitySystem.Entities.AddChild(ent4);
              
-            ent.Childs.AddChild(ent2);
-            //ent.Childs.AddChild(ent2);
 
-            ent2.Components.GetComponent<PhisycComponent>().Position = new Vector3(50, 50, 50);
+            ent4.Components.GetComponent<PhisycComponent>().Position += new Vector3(500, 500, 0);
+            ent.Components.GetComponent<PhisycComponent>().Position += new Vector3(100, 100, 0);
 
             //ent.Components.GetComponent<PhisycComponent>().PropertyChanged += (s, a) => { Console.WriteLine($"Position : {(s as PhisycComponent).Position}"); };
 
-
-
-
+            entityController = ent4.Components.GetComponent<EntityController>();
             /*Control entity*/
-            //StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_W", () => { return Keyboard.GetState().IsKeyDown(Keys.W); }, () => { RenderSystem.Instance.Drawables.Add(new Sprite2D() { Position = new Vector3(0,0,0), Texture = RenderSystem.Instance.DrawData.Content.Load<Texture2D>("Wallpaper"),Scale = new Vector3(0.5f,0.5f,0.5f) }); Console.WriteLine("Add"); }));
-            //StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_A", () => { return Keyboard.GetState().IsKeyDown(Keys.A); }, () => { controller.MoveEntity(new Vector3(-100,  0, 0)); }));
-            //StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_S", () => { return Keyboard.GetState().IsKeyDown(Keys.S); }, () => { controller.MoveEntity(new Vector3( 0, -100, 0)); }));
-            //StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_D", () => { return Keyboard.GetState().IsKeyDown(Keys.D); }, () => { controller.MoveEntity(new Vector3( 100,  0, 0)); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_W", () => { return Keyboard.GetState().IsKeyDown(Keys.W); }, () => { entityController.Move(Vector3.Down); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_A", () => { return Keyboard.GetState().IsKeyDown(Keys.A); }, () => { entityController.Move(Vector3.Left); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_S", () => { return Keyboard.GetState().IsKeyDown(Keys.S); }, () => { entityController.Move(Vector3.Up); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_D", () => { return Keyboard.GetState().IsKeyDown(Keys.D); }, () => { entityController.Move(Vector3.Right); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_Q", () => { return Keyboard.GetState().IsKeyDown(Keys.Q); }, () => { entityController.Parent.Components.GetComponent<RenderComponent>().Source.ZPoz++; Console.WriteLine(entityController.Parent.Components.GetComponent<RenderComponent>().Source.ZPoz); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_E", () => { return Keyboard.GetState().IsKeyDown(Keys.E); }, () => { entityController.Parent.Components.GetComponent<RenderComponent>().Source.ZPoz--; Console.WriteLine(entityController.Parent.Components.GetComponent<RenderComponent>().Source.ZPoz); }));
         }
 
         public void Load()

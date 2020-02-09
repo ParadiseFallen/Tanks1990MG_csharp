@@ -23,7 +23,7 @@ namespace EMCS.Realisations.System
             if (Systems.Contains(system))
                 return false;
             Systems.Add(system);
-            OnAddSystem.Invoke(this, system);
+            OnAddSystem?.Invoke(this, system);
             return true;
         }
         public T GetSystem<T>() where T : class, ISystem

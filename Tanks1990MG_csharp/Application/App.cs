@@ -6,7 +6,10 @@ using Microsoft.Xna.Framework.Input;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
+using Tanks1990MG_csharp.Application.ECS.Fabric.Decorators;
+using Tanks1990MG_csharp.Application.ECS.FabricDecorators;
 using Tanks1990MG_csharp.Application.ECS.Systems;
+using Tanks1990MG_csharp.Application.Game.GameEntityes.Fabric.Decorators;
 using Tanks1990MG_csharp.Application.InputMG.Solutions;
 using Tanks1990MG_csharp.Application.States;
 using Tanks1990MG_csharp.Application.States.Interfaces;
@@ -45,7 +48,14 @@ namespace Tanks1990MG_csharp.Application
 
             EntityBuilder.BuilderInstance.Content = Content;
 
-            
+
+            EntityBuilder.BuilderInstance.Decorators.Add("PhisycModelDecorator", new PhisycModelDecorator());
+            EntityBuilder.BuilderInstance.Decorators.Add("TankTextureSprite", new RendererDecorator());
+            EntityBuilder.BuilderInstance.Decorators.Add("ColisionDecorator", new ColisionDecorator());
+            EntityBuilder.BuilderInstance.Decorators.Add("ControllerDecorator", new ControlDecorator());
+
+
+            PrefabList.Instance.Prefabs.Add("Tank",new Prefab() { Name= "Tank", Chain = new DecorationChain() { EntityProviderName = "CustomEntity", DecoratorsChain = { "PhisycModelDecorator", "TankTextureSprite" } } });
 
         }
 
