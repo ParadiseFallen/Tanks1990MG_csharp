@@ -59,7 +59,6 @@
     <Compile Include="Application\ECS\Dependencies\Sprite2D.cs" />
     <Compile Include="Application\ECS\FabricDecorators\ColisionDecorator.cs" />
     <Compile Include="Application\ECS\FabricDecorators\ControlDecorator.cs" />
-    <Compile Include="Application\ECS\Prefabs.cs" />
     <Compile Include="Application\ECS\Systems\ColisionSystem.cs" />
     <Compile Include="Application\ECS\Systems\NetworkSystem.cs" />
     <Compile Include="Application\ECS\Systems\PhisycSystem.cs" />

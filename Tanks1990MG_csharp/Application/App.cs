@@ -55,7 +55,7 @@ namespace Tanks1990MG_csharp.Application
             EntityBuilder.BuilderInstance.Decorators.Add("ControllerDecorator", new ControlDecorator());
 
 
-            PrefabList.Instance.Prefabs.Add("Tank",new Prefab() { Name= "Tank", Chain = new DecorationChain() { EntityProviderName = "CustomEntity", DecoratorsChain = { "PhisycModelDecorator", "TankTextureSprite" } } });
+            //PrefabList.Instance.Prefabs.Add("Tank",new Prefab() { Name= "Tank", Chain = new DecorationChain() { EntityProviderName = "CustomEntity", DecoratorsChain = { "PhisycModelDecorator", "TankTextureSprite" } } });
 
         }
 

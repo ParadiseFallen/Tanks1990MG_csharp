@@ -8,11 +8,9 @@ using Tanks1990MG_csharp.Application.ECS.Dependencies;
 
 namespace Tanks1990MG_csharp.Application.Game.GameEntityes.Fabric.Decorators
 {
-    class RendererDecorator : IEntityDecorator
+    class RendererDecorator : Decorator
     {
-        public EntityBuilder Builder { get; set; }
-
-        public void Decorate(IEntity entity)
+        override public void Decorate(IEntity entity)
         {
            entity.Components.AddComponent(new RenderComponent() { Source = new Sprite2D() { Texture =  Builder.Content.Load<Texture2D>("Tank") ,Position = Vector3.Zero,Scale = new Vector3(.5f,.5f,.5f)} }); ;
         }

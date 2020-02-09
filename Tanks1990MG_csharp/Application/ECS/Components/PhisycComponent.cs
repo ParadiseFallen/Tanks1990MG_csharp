@@ -22,7 +22,6 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
         public Vector3 Acceleration { get { return _Acceleration; } set { _Acceleration = value; PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Acceleration")); } }
         public Vector3 PrevPos { get; set; }
 
-        private ColisionComponent2D CComponent;
         public override void WayToAtivate(IEntity parrent)
         {
             IsActivated = true;

@@ -59,7 +59,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Без имени-1.png
+/build:Без имени-1.png;Bullet.png
 
 #begin пробатанка4.png
 /importer:TextureImporter

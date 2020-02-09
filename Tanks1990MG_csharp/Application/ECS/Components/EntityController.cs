@@ -14,6 +14,7 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
     {
         private PhisycComponent PComponent;
         private RenderComponent RComponent;
+        public event Action<EntityController> OnShot;
         public override void WayToAtivate(IEntity parrent)
         {
             PComponent = parrent.Components.GetComponent<PhisycComponent>();
@@ -33,7 +34,7 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
         }
         public void Shot()
         {
-
+            OnShot?.Invoke(this);
         }
         public override void WayToDeativate(IEntity parrent)
         {

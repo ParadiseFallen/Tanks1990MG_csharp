@@ -39,13 +39,13 @@ namespace Tanks1990MG_csharp.Application.ECS.Systems
             OnAddComponent += (s,a) => { (a as ColisionComponent2D).OnColision += (s2,a2) => {
                 if (s2.NameObject == "Tank" || s2.NameObject == "Wall" && a2.NameObject == "Bullet" || a2.NameObject == "Tank" || a2.NameObject == "Wall" && s2.NameObject == "Bullet")
                     DeleteEntityColision?.Invoke(a.Parent);
-                a.Parent.Components.GetComponent<PhisycComponent>().Acceleration = -a.Parent.Components.GetComponent<PhisycComponent>().Acceleration;
+                a.Parent.Components.GetComponent<PhisycComponent>().Position -=a.Parent.Components.GetComponent<PhisycComponent>().Acceleration*2;
                 }; };
             OnRemoveComponent += (s, a) => {
                 (a as ColisionComponent2D).OnColision -= (s2, a2) => {
                     if (s2.NameObject == "Tank" || s2.NameObject == "Wall" && a2.NameObject == "Bullet" || a2.NameObject == "Tank" || a2.NameObject == "Wall" && s2.NameObject == "Bullet")
                         DeleteEntityColision?.Invoke(a.Parent);
-                    a.Parent.Components.GetComponent<PhisycComponent>().Acceleration = Vector3.Zero;
+                    a.Parent.Components.GetComponent<PhisycComponent>().Position -= a.Parent.Components.GetComponent<PhisycComponent>().Acceleration * 2;
                 };
             };
         }

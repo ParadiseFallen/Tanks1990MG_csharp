@@ -9,7 +9,7 @@ namespace ECS.Fabric
     [Serializable]
     public class DecorationChain
     {
-        public List<string> DecoratorsChain { get; } = new List<string>();
+        public List<string> DecoratorsChain { get; set; } = new List<string>();
         public string EntityProviderName { get; set; } = "";
     }
 }
