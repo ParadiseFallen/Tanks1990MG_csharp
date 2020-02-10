@@ -53,6 +53,7 @@ namespace Tanks1990MG_csharp.Application
             EntityBuilder.BuilderInstance.Decorators.Add("TankTextureSprite", new RendererDecorator());
             EntityBuilder.BuilderInstance.Decorators.Add("ColisionDecorator", new ColisionDecorator());
             EntityBuilder.BuilderInstance.Decorators.Add("ControllerDecorator", new ControlDecorator());
+            EntityBuilder.BuilderInstance.Decorators.Add("BulletRendererDecorator", new BulletRendererDecorator());
 
 
             //PrefabList.Instance.Prefabs.Add("Tank",new Prefab() { Name= "Tank", Chain = new DecorationChain() { EntityProviderName = "CustomEntity", DecoratorsChain = { "PhisycModelDecorator", "TankTextureSprite" } } });

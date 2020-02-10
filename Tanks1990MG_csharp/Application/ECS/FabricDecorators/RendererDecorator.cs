@@ -15,4 +15,11 @@ namespace Tanks1990MG_csharp.Application.Game.GameEntityes.Fabric.Decorators
            entity.Components.AddComponent(new RenderComponent() { Source = new Sprite2D() { Texture =  Builder.Content.Load<Texture2D>("Tank") ,Position = Vector3.Zero,Scale = new Vector3(.5f,.5f,.5f)} }); ;
         }
     }
+    class BulletRendererDecorator : Decorator
+    {
+        override public void Decorate(IEntity entity)
+        {
+           entity.Components.AddComponent(new RenderComponent() { Source = new Sprite2D() { Texture =  Builder.Content.Load<Texture2D>("Bullet") ,Position = Vector3.Zero,Scale = new Vector3(.5f,.5f,.5f)} }); ;
+        }
+    }
 }

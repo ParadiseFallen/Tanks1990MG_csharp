@@ -15,16 +15,19 @@ namespace Tanks1990MG_csharp.Application.ECS.Systems
     {
         public override Type TargetComponent => typeof(PhisycComponent);
         public override ComponentsSignature TargetSignature => new ComponentsSignature(typeof(PhisycComponent));
+       
         public override void Update(GameTime gameTime)
         {
-            EntityComponents.ForEach(i=> {
-                var component = (i as PhisycComponent);
+            for (int i = 0; i < EntityComponents.Count; i++)
+            {
+                var component = (EntityComponents[i] as PhisycComponent);
                 component.PrevPos = component.Position;
 
                 component.Position += component.Acceleration /* * gameTime*/;
-                component.Acceleration = Vector3.Lerp(component.Acceleration,Vector3.Zero,0.5f);
+                if (component.Break)
+                    component.Acceleration = Vector3.Lerp(component.Acceleration, Vector3.Zero, 0.5f);
                 //Console.WriteLine($"Acc: {component.Acceleration}");
-            });
+            };
         }
     }
 }

@@ -41,11 +41,14 @@ namespace EMCS.Systems.SubSystems
 
         public void RemoveEntity(IEntity gameEntity)
         {
+            if (!gameEntity.Components.ComponentsTypeSignature.Equals(TargetSignature))
+                return;
             foreach (var item in gameEntity.Components.Components)
             {
                 if (TargetComponent == item.GetType())
                 {
                     EntityComponents.Remove(item);
+                    Console.WriteLine($"R {this} : {item}");
                     OnRemoveComponent?.Invoke(this, item);
                 }
             }

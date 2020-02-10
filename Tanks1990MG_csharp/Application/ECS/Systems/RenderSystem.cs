@@ -31,9 +31,10 @@ namespace Tanks1990MG_csharp.Application.ECS.Systems
         {
             OnAddComponent += (s, a) => { 
                 Application.RenderSystem.Instance.Drawables.Add((a as RenderComponent).Source);
-                //Console.WriteLine("Add");
             };
-            OnRemoveComponent += (s, a) => { Application.RenderSystem.Instance.Drawables.Remove((a as RenderComponent).Source); };
+            OnRemoveComponent += (s, a) => { 
+                Application.RenderSystem.Instance.Drawables.Remove((a as RenderComponent).Source); 
+            };
         }
         public override Type TargetComponent => typeof(RenderComponent);
         public override ComponentsSignature TargetSignature => new ComponentsSignature(typeof(RenderComponent));

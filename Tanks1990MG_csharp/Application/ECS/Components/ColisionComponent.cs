@@ -30,10 +30,10 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
         public Rectangle ColisionBound { get { return new Rectangle((int)pComponent.Position.X+ColisionArea.X, (int)pComponent.Position.Y+ColisionArea.Y, ColisionArea.Width, ColisionArea.Height); } }
         public void InitColision(ColisionComponent2D other)
         {
-            OnColision?.Invoke(this, other);
+            OnColision?.Invoke( other);
         }
 
-        public event Action<ColisionComponent2D, ColisionComponent2D> OnColision;
+        public event Action< ColisionComponent2D> OnColision;
 
     }
 }

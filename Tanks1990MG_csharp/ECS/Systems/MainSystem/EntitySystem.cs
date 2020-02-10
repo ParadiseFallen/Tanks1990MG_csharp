@@ -49,16 +49,15 @@ namespace ECS.Systems.MainSystem
             {
                 //жобавиь новую сущность
                 i.RemoveEntity(entity);
-
-                entity.Childs.OnChildAdded -= AddRegisterEntity;
-                entity.Childs.OnChildAdded -= RemoveRegisterEntity;
-
                 //если есть дети - добавить детей
                 if (entity.Childs != null)
                     foreach (var item in entity.Childs.ChildEntities)
                     {
                         RemoveRegisterEntity(this, item);
                     }
+
+                entity.Childs.OnChildAdded -= AddRegisterEntity;
+                entity.Childs.OnChildAdded -= RemoveRegisterEntity;
             });
         }
 

@@ -55,6 +55,7 @@ namespace EMCS.Realisations.Containers
         }
         public bool RemoveChild(IEntity entity)
         {
+            OnChildRemoved?.Invoke(this, entity);
             return ChildEntities.Remove(entity);
         }
     }

@@ -83,16 +83,32 @@ namespace Tanks1990MG_csharp.Application.States.Solution
             entityController = ent4.Components.GetComponent<EntityController>();
             entityController.OnShot += (controller) => {
                 var pc = controller.Parent.Components.GetComponent<PhisycComponent>();
-                //add bullet
+                var Bullet = EntityBuilder.BuilderInstance.GetWrap().StartBuild("CustomEntity").Decorate("PhisycModelDecorator").Decorate("BulletRendererDecorator").Decorate("ColisionDecorator").Decorate("ControllerDecorator").Resault;
+                pc.Parent.Childs.AddChild(Bullet);
+                var bulletCOmponent = Bullet.Components.GetComponent<PhisycComponent>();
+                Bullet.Components.GetComponent<ColisionComponent2D>().OnColision += (b) => {
+                    entitySystem.Entities.RemoveChild(b.Parent);
+                    entitySystem.Entities.RemoveChild(Bullet);
+                    Console.WriteLine(Bullet);
+                    Console.WriteLine(b.Parent);
+                    Console.WriteLine("Shot");
+                };
+                bulletCOmponent.Break = false;
+                bulletCOmponent.Acceleration = pc.Rotation*10;
+                bulletCOmponent.Position = pc.Position+pc.Rotation;
+                bulletCOmponent.Position += pc.Rotation * 16;
+                (Bullet.Components.GetComponent<RenderComponent>().Source as Sprite2D).RotationDeg = (float)Math.Atan2(pc.Rotation.X, -pc.Rotation.Y);
+                Console.WriteLine();
+                //entitySystem.Entities.AddChild(Bullet);
                 //controller.Parent.Childs.AddChild();
 
             };
             /*Control entity*/
             StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_W", () => { return Keyboard.GetState().IsKeyDown(Keys.W); }, () => { entityController.Move(Vector3.Down); }));
             StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_A", () => { return Keyboard.GetState().IsKeyDown(Keys.A); }, () => { entityController.Move(Vector3.Left); }));
-            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_S", () => { return Keyboard.GetState().IsKeyDown(Keys.S); }, () => { entityController.Move(Vector3.Up); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_S", () => { return Keyboard.GetState().IsKeyDown(Keys.S); }, () => { entityController.Move(Vector3.Up); }) );
             StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_D", () => { return Keyboard.GetState().IsKeyDown(Keys.D); }, () => { entityController.Move(Vector3.Right); }));
-            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_Q", () => { return Keyboard.GetState().IsKeyDown(Keys.Space); }, () => { entityController.Shot(); }));
+            StateKeyboardLayout.Add(new BindibleKey("TEST_STATE_SPACE", () => { return Keyboard.GetState().IsKeyDown(Keys.Space); }, () => { entityController.Shot(); }) { RepeatDelayMS = 500 });
         }
 
         public void Load()

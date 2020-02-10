@@ -28,7 +28,7 @@ namespace Tanks1990MG_csharp.Application.ECS.Components
         public void Move(Vector3 Direction)
         {
             PComponent.Acceleration += Direction;
-
+            PComponent.Rotation = Direction;
 
             (RComponent.Source as Sprite2D).RotationDeg = (float)Math.Atan2(Direction.X ,- Direction.Y);
         }
