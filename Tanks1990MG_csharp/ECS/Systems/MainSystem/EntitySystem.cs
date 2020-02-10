@@ -30,6 +30,7 @@ namespace ECS.Systems.MainSystem
             {
                 //жобавиь новую сущность
                 i.AddEntity(entity);
+                //this.Entities.AddChild(entity);
 
                 entity.Childs.OnChildAdded += AddRegisterEntity;
                 entity.Childs.OnChildRemoved += RemoveRegisterEntity;
@@ -49,6 +50,7 @@ namespace ECS.Systems.MainSystem
             {
                 //жобавиь новую сущность
                 i.RemoveEntity(entity);
+                //this.Entities.RemoveChild(entity);
                 //если есть дети - добавить детей
                 if (entity.Childs != null)
                     foreach (var item in entity.Childs.ChildEntities)

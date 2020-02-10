@@ -88,7 +88,8 @@ namespace Tanks1990MG_csharp.Application.States.Solution
                 var bulletCOmponent = Bullet.Components.GetComponent<PhisycComponent>();
                 Bullet.Components.GetComponent<ColisionComponent2D>().OnColision += (b) => {
                     entitySystem.Entities.RemoveChild(b.Parent);
-                    entitySystem.Entities.RemoveChild(Bullet);
+                    //entitySystem.Entities.RemoveChild(Bullet);//Revork to recursive remove!!!
+                    controller.Parent.Childs.RemoveChild(Bullet);
                     Console.WriteLine(Bullet);
                     Console.WriteLine(b.Parent);
                     Console.WriteLine("Shot");
